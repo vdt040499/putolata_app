@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart, getCartItems } from "../../actions";
 import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
 import CartItem from "./components/CartItem";
-
 import "./style.css";
-import { MaterialButton } from "../../components/MaterialUI";
-import { addToCart } from "../../actions";
 
 /*
 Before Login
@@ -18,6 +16,7 @@ if logged in then add products to users cart database from localStorage
 
 const CartPage = (props) => {
   const cart = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
   // const cartItems = cart.cartItems;
   const [cartItems, setCartItems] = useState(cart.cartItems);
   const dispatch = useDispatch();
@@ -25,6 +24,12 @@ const CartPage = (props) => {
   useEffect(() => {
     setCartItems(cart.cartItems);
   }, [cart.cartItems]);
+
+  useEffect(() => {
+    if (auth.authenticate) {
+      dispatch(getCartItems());
+    }
+  }, [auth.authenticate]);
 
   const onQuantityIncrement = (_id, qty) => {
     // console.log({ _id, qty });
@@ -54,7 +59,7 @@ const CartPage = (props) => {
             />
           ))}
         </Card>
-        <Card headerLeft='Price' style={{ width: "500px"}}></Card>
+        <Card headerLeft="Price" style={{ width: "500px" }}></Card>
       </div>
     </Layout>
   );
