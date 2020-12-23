@@ -1,19 +1,17 @@
+import React, { useState, useEffect } from "react";
 import Badge from "@material-ui/core/Badge";
-import TextField from "@material-ui/core/TextField";
-import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../../actions";
 import account from "../../assets/img/Account.png";
-import banner1 from "../../assets/img/banner2.png";
 import cart from "../../assets/img/Cart.png";
 import logo from "../../assets/img/logo.png";
 import search from "../../assets/img/search.png";
 import welcome from "../../assets/img/welcome.png";
-import { Modal, MaterialInput } from "../MaterialUI";
+import { MaterialInput, Modal } from "../MaterialUI";
 import "./style.css";
 
 function Header(props) {
@@ -24,11 +22,45 @@ function Header(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const dispatch = useDispatch()
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const userLogin = () => {
     dispatch(login({ email, password }));
-  }
+  };
+
+  useEffect(() => {
+    if (auth.authenticate) {
+      setLoginModal(false);
+    }
+  }, [auth.authenticate]);
+
+  const renderLoggedInMenu = () => {
+    return (
+      <div className="header__signpane">
+        <div className="header__log">
+          <a className="link">
+            <button className="btn-hover color-4">{auth.user.fullName}</button>
+          </a>
+        </div>
+      </div>
+    );
+  };
+
+  const renderNonLoggedInMenu = () => {
+    return (
+      <div className="header__signpane">
+        <div className="header__log">
+          <a className="link">
+            <button className="btn-hover color-4">Đăng ký</button>
+          </a>
+          <a className="link" onClick={() => setLoginModal(true)}>
+            <button className="btn-hover color-4">Đăng nhập</button>
+          </a>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="header">
@@ -173,16 +205,7 @@ function Header(props) {
             <Link className="link" to="/account">
               <img src={account} alt="" className="header__icon" />
             </Link>
-            <div className="header__signpane">
-              <div className="header__log">
-                <Link className="link" to="/register">
-                  <button className="btn-hover color-4">Đăng ký</button>
-                </Link>
-                <a className="link" onClick={() => setLoginModal(true)}>
-                  <button className="btn-hover color-4">Đăng nhập</button>
-                </a>
-              </div>
-            </div>
+            {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
           </li>
         </ul>
       </nav>
@@ -219,7 +242,12 @@ function Header(props) {
                         Quên mật khẩu?
                       </a>
                     </div>
-                    <button className="login__button color-5" onClick={userLogin}>ĐĂNG NHẬP</button>
+                    <button
+                      className="login__button color-5"
+                      onClick={userLogin}
+                    >
+                      ĐĂNG NHẬP
+                    </button>
                   </div>
                 </Col>
               </Row>
