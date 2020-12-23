@@ -1,0 +1,63 @@
+.footer {
+    background-color: #FFEEEE;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-family: 'Candara';
+}
+
+.footer__slogan {
+    width: 100%;
+    justify-content: center;
+}
+
+.logopic {
+    width: 25%;
+}
+
+.sloganpic {
+    margin-top: 30px;
+    width: 75%;
+}
+
+.footer__infobasic {
+    color: #EF6E92;
+    margin-left: 20px;
+}
+
+.footer__copyright {
+    padding: 10px 20px;
+    background-color: #FFC7C7;
+    text-align: center;
+    color: #EF6E92;
+    font-size: 15px;
+}
+
+.footer__copyinfo {
+    margin-bottom: 0px;
+}
+
+.footer__adveninfo {
+    margin-left: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+}
+
+.footer__title {
+    color: #FF8F8F;
+    margin-top: 8vw;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.footer__infoadven {
+    color: #EF6E92;
+}
+
+.footer__infoadven:hover {
+    color: rgb(255, 114, 114);
+    justify-self: center;
+}

@@ -5,6 +5,22 @@
     font-family: 'Roboto';
 }
 
+nav {
+    background-color: #FFF6F6;
+}
+
+ul.header__left, ul.header__right {
+    margin: 0px;
+}
+
+ul.header__left {
+    padding-left: 1%;
+}
+
+ul.header__right {
+    padding-right: 1%;
+}
+
 ul > li {
     text-decoration: none;
     list-style-type: none;
@@ -64,6 +80,7 @@ ul > li {
 }
 
 .search {
+    background-color: #FFF6F6;
     height: 25px;
     width: 25px;
 }
@@ -85,6 +102,7 @@ ul > li {
 input {
     outline: none;
     border: none;
+    background-color: #FFF6F6;
     margin-left: 5px;
 }
 
@@ -158,6 +176,7 @@ input {
 }
 
 .header__log {
+    /* background-color: #FFF6F6; */
     padding-top: 10px;
     display: flex;
     position: absolute;
@@ -222,97 +241,4 @@ button {
 
 .header__account:hover .header__signpane {
     display: block;
-}
-
-/* Login Modal */
-.login {
-    padding: 30px;
-}
-.login__banner > img {
-    width: 100%;
-}
-
-.login__leftcontent{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-.login__welcome{
-    width: 40vw;
-}
-
-.login__logo {
-    width: 25vw;
-}
-
-.login__info {
-    background-color: white;
-    padding: 10%;
-    box-shadow: 1px 2px 10px 2px #ededed;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.5s ease-in-out;
-}
-
-.login__info:hover {
-    transform: scale(1.02, 1.02);
-}
-
-.login__title {
-    color: #ed4943;
-    font-weight: bold;
-    font-size: large;
-    text-align: center;
-    margin-bottom: 0px;
-}
-
-.login__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login__text {
-    text-align: end;
-    color: #f3c5af;
-}
-
-.login__text:hover {
-    color: #f2958b;
-    text-decoration: none;
-}
-
-.login__textcontent{
-    text-align: end;
-}
-
-.login__button {
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-    margin: 20px;
-    height: 55px;
-    text-align:center;
-    border: none;
-    background-size: 300% 100%;
-    border-radius: 50px;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
-
-.login__button:hover {
-    background-position: 100% 0;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
-
-.color-5 {
-    background-image: linear-gradient(to right, #fadcb2 0%, #fde4db 51%, #ff9e9e 100%);
 }

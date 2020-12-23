@@ -1,0 +1,120 @@
+* {
+    font-family: 'Candara';
+}
+.home__banner {
+    align-items: center;
+}
+
+.home__sidebanner {
+    text-align: center;
+}
+
+.home__sidebanner img {
+    width: 80%;
+}
+
+.home__slogan {
+    width: 100%;
+}
+
+.home__button{
+    text-align: center;
+}
+.home__type1 {
+    background-color: #FFAFAF;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 700;
+    border: 2px solid #FFAFAF;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-shadow: 0 0 20px #eee;
+    transition: all .4s ease-in-out;
+}
+
+.home__type2 {
+    background-color: #ffffff;
+    color: #F97B7B;
+    padding: 10px 20px;
+    font-weight: 700;
+    border: 2px solid #F97B7B;
+    border-radius: 10px;
+    margin-left: 10px;
+    box-shadow: 0 0 20px #eee;
+    transition: all .4s ease-in-out;
+}
+
+.home__type1:hover, .home__type2:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    transform: scale(1.1,1);
+}
+
+.home__intent {
+    padding-top: 30px;
+    background-color: #FFEEEE;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.intent {
+    width: 45vw;
+}
+
+.home__descript {
+    color: #F97B7B;
+    font-size: 1.2em;
+    padding-bottom: 10px;
+    font-style: italic;
+    font-family: 'Candara';
+}
+
+.home__intentcontain {
+    width: 100%;
+    position: relative;
+}
+
+.home__intentcontent {
+    background-color: white;
+    position: relative;
+    margin: 0px 1vw 0px 1vw;
+    border-radius: 50px 50px 0px 0px;
+    padding-bottom: 1vh;
+}
+
+.home__topperImg {
+    position: absolute;
+    width: 100%;
+    top:0;
+    left: 0;
+    z-index: 500;
+}
+
+.home__topperIcon {
+    height: 60px;
+    margin: 20vh 0px 10px 0px;
+}
+
+.home__topperDes {
+    color: #F97B7B;
+}
+
+.home__title {
+    width: 32vw;
+}
+
+.home__newcontain {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.sparkle {
+    height: 5vw;
+}
+
+.home__star {
+    text-align: center;
+}
