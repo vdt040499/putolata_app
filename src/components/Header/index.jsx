@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { login } from "../../actions";
+import { login, signout } from "../../actions";
 import account from "../../assets/img/Account.png";
 import cart from "../../assets/img/Cart.png";
 import logo from "../../assets/img/logo.png";
@@ -29,6 +29,11 @@ function Header(props) {
     dispatch(login({ email, password }));
   };
 
+  const logout = () => {
+    console.log('HAHA');
+    dispatch(signout());
+  }
+
   useEffect(() => {
     if (auth.authenticate) {
       setLoginModal(false);
@@ -41,6 +46,9 @@ function Header(props) {
         <div className="header__log">
           <a className="link">
             <button className="btn-hover color-4">{auth.user.fullName}</button>
+          </a>
+          <a className="link">
+            <button className="btn-hover color-4" onClick={logout}>Đăng xuất</button>
           </a>
         </div>
       </div>
