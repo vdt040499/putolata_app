@@ -107,7 +107,7 @@ const CheckoutPage = (props) => {
   const onAddressSubmit = (addr) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
-    // setOrderSummary(true);
+    setOrderSummary(true);
   };
 
   const selectAddress = (addr) => {
@@ -123,7 +123,7 @@ const CheckoutPage = (props) => {
   const confirmDeliveryAddress = (addr) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
-    // setOrderSummary(true);
+    setOrderSummary(true);
   };
 
   const enableAddressEditForm = (addr) => {
@@ -165,40 +165,26 @@ const CheckoutPage = (props) => {
   //     setConfirmOrder(true);
   //   };
 
-  //   useEffect(() => {
-  //     auth.authenticate && dispatch(getAddress());
-  //     auth.authenticate && dispatch(getCartItems());
-  //   }, [auth.authenticate]);
+    useEffect(() => {
+      auth.authenticate && dispatch(getAddress());
+      auth.authenticate && dispatch(getCartItems());
+    }, [auth.authenticate]);
 
-  //   useEffect(() => {
-  //     const address = user.address.map((adr) => ({
-  //       ...adr,
-  //       selected: false,
-  //       edit: false,
-  //     }));
-  //     setAddress(address);
-  //     //user.address.length === 0 && setNewAddress(true);
-  //   }, [user.address]);
+    useEffect(() => {
+      const address = user.address.map((adr) => ({
+        ...adr,
+        selected: false,
+        edit: false,
+      }));
+      setAddress(address);
+      //user.address.length === 0 && setNewAddress(true);
+    }, [user.address]);
 
   //   useEffect(() => {
   //     if (confirmOrder && user.placedOrderId) {
   //       props.history.push(`/order_details/${user.placedOrderId}`);
   //     }
   //   }, [user.placedOrderId]);
-
-  useEffect(() => {
-    auth.authenticate && dispatch(getAddress());
-  }, [auth.authenticate]);
-
-  useEffect(() => {
-    const address = user.address.map((adr) => ({
-      ...adr,
-      selected: false,
-      edit: false,
-    }));
-    setAddress(address);
-    //user.address.length === 0 && setNewAddress(true);
-  }, [user.address]);
 
   return (
     <Layout>
