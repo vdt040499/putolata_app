@@ -109,21 +109,21 @@ const CheckoutPage = (props) => {
     // setOrderSummary(true);
   };
 
-  //   const selectAddress = (addr) => {
-  //     //console.log(addr);
-  //     const updatedAddress = address.map((adr) =>
-  //       adr._id === addr._id
-  //         ? { ...adr, selected: true }
-  //         : { ...adr, selected: false }
-  //     );
-  //     setAddress(updatedAddress);
-  //   };
+  const selectAddress = (addr) => {
+    //console.log(addr);
+    const updatedAddress = address.map((adr) =>
+      adr._id === addr._id
+        ? { ...adr, selected: true }
+        : { ...adr, selected: false }
+    );
+    setAddress(updatedAddress);
+  };
 
-  //   const confirmDeliveryAddress = (addr) => {
-  //     setSelectedAddress(addr);
-  //     setConfirmAddress(true);
-  //     setOrderSummary(true);
-  //   };
+  const confirmDeliveryAddress = (addr) => {
+    setSelectedAddress(addr);
+    setConfirmAddress(true);
+    setOrderSummary(true);
+  };
 
   //   const enableAddressEditForm = (addr) => {
   //     const updatedAddress = address.map((adr) =>
@@ -186,8 +186,18 @@ const CheckoutPage = (props) => {
   //   }, [user.placedOrderId]);
 
   useEffect(() => {
-    dispatch(getAddress());
-  }, []);
+    auth.authenticate && dispatch(getAddress());
+  }, [auth.authenticate]);
+
+  useEffect(() => {
+    const address = user.address.map((adr) => ({
+      ...adr,
+      selected: false,
+      edit: false,
+    }));
+    setAddress(address);
+    //user.address.length === 0 && setNewAddress(true);
+  }, [user.address]);
 
   return (
     <Layout>
@@ -211,15 +221,48 @@ const CheckoutPage = (props) => {
               )
             }
           />
+
           <CheckoutStep
             stepNumber={"2"}
             title={"DELIVERY ADDRESS"}
             active={!confirmAddress && auth.authenticate}
             body={
               <>
-                {
-                  user.address.map(adr => <div>{JSON.stringify(adr)}</div>)
-                }
+                {confirmAddress
+                  ? JSON.stringify(selectedAddress)
+                  : address.map((adr) => (
+                      <div className="flexRow addressContainer">
+                        <div>
+                          <input
+                            name="address"
+                            onClick={() => selectAddress(adr)}
+                            type="radio"
+                          />
+                        </div>
+                        <div className="flexRow sb addressinfo">
+                          <div>
+                            <div>
+                              <span>{adr.name}</span>
+                              <span>{adr.addressType}</span>
+                              <span>{adr.mobileNumber}</span>
+                            </div>
+                            <div>{adr.address}</div>
+                            <div>
+                              {adr.selected && (
+                                <MaterialButton
+                                  title="DELIVERY HERE"
+                                  onClick={() => confirmDeliveryAddress(adr)}
+                                  style={{
+                                    width: "250px",
+                                  }}
+                                />
+                              )}
+                            </div>
+                          </div>
+                            {adr.selected && <div>edit</div>}
+                        </div>
+                      </div>
+                    ))}
               </>
             }
           />
