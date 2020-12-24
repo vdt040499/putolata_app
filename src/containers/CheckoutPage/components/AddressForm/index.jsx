@@ -67,32 +67,32 @@ const AddressForm = (props) => {
     setSubmitFlag(true);
   };
 
-  //   useEffect(() => {
-  //     console.log("addressCount", user.address);
-  //     if (submitFlag) {
-  //       console.log("where are we", user);
-  //       let _address = {};
-  //       if (id) {
-  //         _address = {
-  //           _id: id,
-  //           name,
-  //           mobileNumber,
-  //           pinCode,
-  //           locality,
-  //           address,
-  //           cityDistrictTown,
-  //           state,
-  //           landmark,
-  //           alternatePhone,
-  //           addressType,
-  //         };
-  //       } else {
-  //         _address = user.address.slice(user.address.length - 1)[0];
-  //       }
+    useEffect(() => {
+      console.log("addressCount", user.address);
+      if (submitFlag) {
+        console.log("where are we", user);
+        let _address = {};
+        if (id) {
+          _address = {
+            _id: id,
+            name,
+            mobileNumber,
+            pinCode,
+            locality,
+            address,
+            cityDistrictTown,
+            state,
+            landmark,
+            alternatePhone,
+            addressType,
+          };
+        } else {
+          _address = user.address.slice(user.address.length - 1)[0];
+        }
 
-  //       props.onSubmitForm(_address);
-  //     }
-  //   }, [user.address]);
+        props.onSubmitForm(_address);
+      }
+    }, [user.address]);
 
   const renderAddressForm = () => {
     return (

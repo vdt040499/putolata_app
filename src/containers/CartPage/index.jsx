@@ -6,6 +6,7 @@ import Card from "../../components/UI/Card";
 import CartItem from "./components/CartItem";
 import { MaterialButton } from "../../components/MaterialUI";
 import "./style.css";
+import PriceDetails from "../../components/PriceDetails";
 
 /*
 Before Login
@@ -78,7 +79,15 @@ const CartPage = (props) => {
             </div>
           </div>
         </Card>
-        <Card headerLeft="Price" style={{ width: "380px" }}></Card>
+        <PriceDetails
+          totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
+            return qty + cart.cartItems[key].qty;
+          }, 0)}
+          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+            const { price, qty } = cart.cartItems[key];
+            return totalPrice + price * qty;
+          }, 0)}
+        />
       </div>
     </Layout>
   );
