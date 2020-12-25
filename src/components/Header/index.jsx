@@ -63,10 +63,22 @@ function Header(props) {
     return (
       <div className="header__signpane">
         <div className="header__log">
-          <a className="link">
+          <a
+            className="link"
+            onClick={() => {
+              setLoginModal(true);
+              setSignup(true);
+            }}
+          >
             <button className="btn-hover color-4">Đăng ký</button>
           </a>
-          <a className="link" onClick={() => setLoginModal(true)}>
+          <a
+            className="link"
+            onClick={() => {
+              setSignup(false);
+              setLoginModal(true);
+            }}
+          >
             <button className="btn-hover color-4">Đăng nhập</button>
           </a>
         </div>
@@ -235,7 +247,25 @@ function Header(props) {
 
                 <Col md={6}>
                   <div className="login__info">
-                    <p className="login__title">ĐĂNG NHẬP</p>
+                    <p className="login__title">
+                      {signup ? "ĐĂNG KÍ" : "ĐĂNG NHẬP"}
+                    </p>
+                    {signup && (
+                      <MaterialInput
+                        type="text"
+                        label="First Name"
+                        value={email}
+                        onChange={(e) => setFirstName(e.target.value)}
+                      />
+                    )}
+                    {signup && (
+                      <MaterialInput
+                        type="text"
+                        label="Last Name"
+                        value={email}
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                    )}
                     <MaterialInput
                       type="text"
                       label="Email"
@@ -249,16 +279,18 @@ function Header(props) {
                       onChange={(e) => setPassword(e.target.value)}
                       // rightElement={<a href="#">Forgot?</a>}
                     />
-                    <div className="login__textcontent">
-                      <a href="/forgetpassword" className="login__text">
-                        Quên mật khẩu?
-                      </a>
-                    </div>
+                    {signup ? null : (
+                      <div className="login__textcontent">
+                        <a href="/forgetpassword" className="login__text">
+                          Quên mật khẩu?
+                        </a>
+                      </div>
+                    )}
                     <button
                       className="login__button color-5"
                       onClick={userLogin}
                     >
-                      ĐĂNG NHẬP
+                      {signup ? "ĐĂNG KÍ" : "ĐĂNG NHẬP"}
                     </button>
                   </div>
                 </Col>

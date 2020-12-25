@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { getOrders } from "../../actions";
 import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
-import { BiRupee } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
 
 import "./style.css";
@@ -33,7 +32,7 @@ const OrderPage = (props) => {
           breedIcon={<IoIosArrowForward />}
         />
         {user.orders.map((order) => {
-          return order.items.map((item) => (
+          return (
             <Card style={{ display: "block", margin: "5px 0" }}>
               <Link
                 to={`/order_details/${order._id}`}
@@ -42,21 +41,19 @@ const OrderPage = (props) => {
                 <div className="orderImgContainer">
                   <img
                     className="orderImg"
-                    src={generatePublicUrl(
-                      item.productId.productPictures[0].img
-                    )}
+                    // src={generatePublicUrl(
+                    //   order.item[0].productId.productPictures[0].img
+                    // )}
                   />
                 </div>
                 <div className="orderRow">
-                  <div className="orderName">{item.productId.name}</div>
-                  <div className="orderPrice">
-                    {item.payablePrice}
-                  </div>
+                  <div className="orderName">{order._id}</div>
+                  <div className="orderPrice">{order.totalAmount}</div>
                   <div>{order.paymentStatus}</div>
                 </div>
               </Link>
             </Card>
-          ));
+          );
         })}
       </div>
     </Layout>

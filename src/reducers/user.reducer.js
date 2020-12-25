@@ -3,11 +3,11 @@ import { userConstants } from "../actions/constants";
 const initState = {
   address: [],
   orders: [],
-//   orderDetails: {},
+  orderDetails: {},
   error: null,
   loading: false,
   orderFetching: false,
-//   placedOrderId: null,
+  placedOrderId: null,
 };
 
 export default (state = initState, action) => {
@@ -72,22 +72,22 @@ export default (state = initState, action) => {
         orderFetching: false,
       };
       break;
-    // case userConstants.GET_USER_ORDER_DETAILS_REQUEST:
-    //   break;
-    // case userConstants.GET_USER_ORDER_DETAILS_SUCCESS:
-    //   state = {
-    //     ...state,
-    //     orderDetails: action.payload.order,
-    //   };
-    //   break;
-    // case userConstants.GET_USER_ORDER_DETAILS_FAILURE:
-    //   break;
-    // case userConstants.ADD_USER_ORDER_SUCCESS:
-    //   state = {
-    //     ...state,
-    //     placedOrderId: action.payload.order._id,
-    //   };
-    //   break;
+    case userConstants.GET_USER_ORDER_DETAILS_REQUEST:
+      break;
+    case userConstants.GET_USER_ORDER_DETAILS_SUCCESS:
+      state = {
+        ...state,
+        orderDetails: action.payload.order,
+      };
+      break;
+    case userConstants.GET_USER_ORDER_DETAILS_FAILURE:
+      break;
+    case userConstants.ADD_USER_ORDER_SUCCESS:
+      state = {
+        ...state,
+        placedOrderId: action.payload.order._id,
+      };
+      break;
   }
 
   return state;
