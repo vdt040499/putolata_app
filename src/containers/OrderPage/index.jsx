@@ -23,7 +23,7 @@ const OrderPage = (props) => {
 
   return (
     <Layout>
-      {/* <div style={{ maxWidth: "1160px", margin: "5px auto" }}>
+      <div style={{ maxWidth: "1160px", margin: "5px auto" }}>
         <Breed
           breed={[
             { name: "Home", href: "/" },
@@ -42,13 +42,12 @@ const OrderPage = (props) => {
                 <div className="orderImgContainer">
                   <img
                     className="orderImg"
-                    src={item.productId.productPictures[0].img}
+                    src={generatePublicUrl(item.productId.productPictures[0].img)}
                   />
                 </div>
                 <div className="orderRow">
                   <div className="orderName">{item.productId.name}</div>
                   <div className="orderPrice">
-                    <BiRupee />
                     {item.payablePrice}
                   </div>
                   <div>{order.paymentStatus}</div>
@@ -57,49 +56,7 @@ const OrderPage = (props) => {
             </Card>
           ));
         })}
-      </div> */}
-      {user.orders.map((order) => {
-        return order.items.map((item) => (
-          <Card style={{ maxWidth: "1200px", margin: "5px auto" }}>
-            <div className="orderItemContainer">
-              <div
-                style={{
-                  width: 80,
-                  height: 80,
-                  overflow: "hidden",
-                  textAlign: "center",
-                }}
-              >
-                <img
-                  style={{
-                    maxWidth: 80,
-                    maxHeight: 80,
-                  }}
-                  src={generatePublicUrl(item.productId.productPictures[0].img)}
-                  alt=""
-                />
-              </div>
-              <div
-                style={{
-                    display: "flex",
-                    flex: 1,
-                    justifyContent: "space-between",
-                  }}
-              >
-                <div
-                  style={{
-                    width: 300,
-                  }}
-                >
-                  {item.productId.name}
-                </div>
-                <div>{item.payablePrice}</div>
-                <div>{order.paymentStatus}</div>
-              </div>
-            </div>
-          </Card>
-        ));
-      })}
+      </div>
     </Layout>
   );
 };

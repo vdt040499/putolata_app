@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductBySlug } from "../../../actions";
+import { getProductsBySlug } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 import { Link } from "react-router-dom";
 import Card from "../../../components/UI/Card";
@@ -18,7 +18,7 @@ const ProductStore = (props) => {
 
   useEffect(() => {
     const { match } = props;
-    dispatch(getProductBySlug(match.params.slug));
+    dispatch(getProductsBySlug(match.params.slug));
   }, []);
 
   return (
