@@ -30,9 +30,8 @@ function Header(props) {
   };
 
   const logout = () => {
-    console.log('HAHA');
     dispatch(signout());
-  }
+  };
 
   useEffect(() => {
     if (auth.authenticate) {
@@ -47,8 +46,13 @@ function Header(props) {
           <a className="link">
             <button className="btn-hover color-4">{auth.user.fullName}</button>
           </a>
+          <Link className="link" to="/account/orders">
+            <button className="btn-hover color-4">Đơn hàng</button>
+          </Link>
           <a className="link">
-            <button className="btn-hover color-4" onClick={logout}>Đăng xuất</button>
+            <button className="btn-hover color-4" onClick={logout}>
+              Đăng xuất
+            </button>
           </a>
         </div>
       </div>
