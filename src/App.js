@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { getAllProducts, isUserLoggedIn, updateCart } from "./actions";
 import "./App.css";
+import Account from "./containers/AccountPage";
 import CartPage from "./containers/CartPage";
 import CheckoutPage from "./containers/CheckoutPage";
 import HomePage from "./containers/HomePage";
@@ -38,6 +39,7 @@ function App() {
           <Route path="/cart" component={CartPage} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/sales" component={SalePage} />
+          <Route path="/account" exact component={Account} />
           <Route path="/account/orders" component={OrderPage} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route

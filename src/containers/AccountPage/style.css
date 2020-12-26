@@ -1,0 +1,120 @@
+.account {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Cambria";
+}
+
+.account__container {
+    margin: 30px 0px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    border: 1px solid #ffefef;
+}
+
+.account__content {
+    margin-bottom: 30px;
+}
+
+
+.account__topper {
+    text-align: center;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #FFC8C8;
+    transition: all 0.3s;
+}
+
+.account__title {
+    padding: 10px 0px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.account__editbutton {
+    width: 30px;
+}
+
+.account__button {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 10px;
+}
+
+.account__ava {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.account__contentcontain {
+    padding: 0px 30px;
+}
+
+.account__avatar {
+    width: 150px;
+}
+
+.account__titleinfo, .account__addrinfo {
+    display: flex;
+    align-items: center;
+}
+
+.dotstart {
+    width: 30px;
+}
+
+.account__infotitle {
+    align-items: center;
+    margin-top: 15px;
+    color: #D4726F;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.account__info {
+    padding-left: 30px;
+    color: #FFC4C2;
+    font-weight: 800;
+    margin: 5px 0px 0px 0px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.account__details {
+    padding-left: 30px;
+    color: #F69996;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.account__container:hover {
+    box-shadow: 1px 1px 5px 2px#f8ebeb;
+    transform: scale(1.05, 1.05);
+}
+
+.account__billstatus {
+    width: 35px;
+    margin-right: 10px;
+}
+
+.account__listbill {
+    list-style: none;
+}
+
+.account__listbill > li {
+    padding-left: 30px;
+    margin: 10px 0px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.account__listbill > li:hover {
+    color:#F69996;
+    font-weight: bold;
+}
+

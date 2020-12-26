@@ -62,9 +62,9 @@ function Header(props) {
     return (
       <div className="header__signpane">
         <div className="header__log">
-          <button className="link">
+          <Link to="/account" className="link">
             <button className="btn-hover color-4">{auth.user.fullName}</button>
-          </button>
+          </Link>
           <Link className="link" to="/account/orders">
             <button className="btn-hover color-4">Đơn hàng</button>
           </Link>
