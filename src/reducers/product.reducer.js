@@ -13,10 +13,10 @@ const initialState = {
   page: {},
   error: null,
   productDetails: {},
-  loading: false
+  loading: false,
 };
 
-export default (state = initialState, action) => {
+const productReducer =  (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
     case productConstants.GET_PRODUCTS_BY_SLUG:
@@ -68,7 +68,14 @@ export default (state = initialState, action) => {
         error: action.payload.error,
       };
       break;
+    default:
+      state = {
+        ...state,
+      };
+      break;
   }
 
   return state;
 };
+
+export default productReducer;

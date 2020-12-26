@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
+import { IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getOrders } from "../../actions";
 import Layout from "../../components/Layout";
-import Card from "../../components/UI/Card";
-import { IoIosArrowForward } from "react-icons/io";
-
-import "./style.css";
 import { Breed } from "../../components/MaterialUI";
-import { generatePublicUrl } from "../../urlConfig";
+import Card from "../../components/UI/Card";
+import "./style.css";
+
 
 const OrderPage = (props) => {
   const dispatch = useDispatch();
@@ -44,6 +43,7 @@ const OrderPage = (props) => {
                     // src={generatePublicUrl(
                     //   order.item[0].productId.productPictures[0].img
                     // )}
+                    alt=""
                   />
                 </div>
                 <div className="orderRow">

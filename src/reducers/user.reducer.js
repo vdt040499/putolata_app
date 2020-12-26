@@ -10,7 +10,7 @@ const initState = {
   placedOrderId: null,
 };
 
-export default (state = initState, action) => {
+const userReducer = (state = initState, action) => {
   switch (action.type) {
     case userConstants.GET_USER_ADDRESS_REQUEST:
       state = {
@@ -88,7 +88,14 @@ export default (state = initState, action) => {
         placedOrderId: action.payload.order._id,
       };
       break;
+    default: 
+      state = {
+        ...state
+      }
+      break;
   }
 
   return state;
 };
+
+export default userReducer;

@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import {
   Anchor,
   MaterialButton,
-  MaterialInput,
+  MaterialInput
 } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
 // import PriceDetails from "../../components/PriceDetails";

@@ -1,0 +1,17 @@
+.ruleitem__img {
+    text-align: center;
+    width: 100px;
+}
+
+.ruleitem__name {
+    color: #FF8282;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 10px 0px 5px 0px;
+    text-transform: uppercase;
+}
+
+.ruleitem__des {
+    height: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

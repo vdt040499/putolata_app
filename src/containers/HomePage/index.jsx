@@ -2,19 +2,27 @@ import React from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import cusser from "../../assets/img/cusser.png";
+import deli from "../../assets/img/deli.png";
+import banner from "../../assets/img/home-img.png";
 import bling from "../../assets/img/Image -1.png";
 import bling2 from "../../assets/img/Image 17.png";
 import heart from "../../assets/img/Image 30.png";
 import metal from "../../assets/img/Image 32.png";
 import cake from "../../assets/img/Image 33.png";
 import news from "../../assets/img/new.png";
+import hinh1 from "../../assets/img/NoPath.png";
+import payment from "../../assets/img/payment.png";
+import product from "../../assets/img/product.png";
 import slogan from "../../assets/img/slogan.png";
+import superstar from "../../assets/img/superstar.png";
 import topper from "../../assets/img/topper.png";
 import welcome from "../../assets/img/welcome.png";
+import why from "../../assets/img/why.png";
 import Layout from "../../components/Layout";
-import banner from "../../assets/img/home-img.png";
-import superstar from "../../assets/img/superstar.png";
 import Product from "../../components/Product";
+import RuleItem from "../../components/RuleItem";
+import SpecialProduct from "../../components/SpecialProduct";
 import "./style.css";
 
 const HomePage = () => {
@@ -197,7 +205,7 @@ const HomePage = () => {
                   />
                 </Col>
                 <Col lg={6} md={4}>
-                  <Product
+                  <SpecialProduct
                     title="Misha Collins Famous Coloring"
                     price={999.99}
                     image={
@@ -219,6 +227,65 @@ const HomePage = () => {
               </Row>
             </Container>
             <button className="home__type2">XEM THÊM</button>
+          </div>
+        </div>
+
+        <div className="home__category">
+          <img src={why} className="intent" alt="" />
+          <p className="home__descript">
+            Tại vì chúng mình là đỉnh nhấttttttt!
+          </p>
+          <button className="home__type1">XEM SẢN PHẨM</button>
+          <div className="home__catecontainer">
+            <Container>
+              <Row>
+                <Col md={6}>
+                  <div className="home__rulecontainer">
+                    <RuleItem
+                      name="Giao hàng miễn phí"
+                      img={deli}
+                      des="Cho đơn hàng trên 1.000.000 VNĐ"
+                    />
+                  </div>
+                </Col>
+
+                <Col md={6}>
+                  <div className="home__rulecontainer">
+                    <RuleItem
+                      name="Thanh toán"
+                      img={payment}
+                      des="Nhiều hình thức thanh toán tùy thuộc vào lựa chọn của bạn"
+                    />
+                  </div>
+                </Col>
+              </Row>
+
+              <Row className="justify-content-md-center">
+                <img src={hinh1} alt="" className="home__ruleimg" />
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <div className="home__rulecontainer">
+                    <RuleItem
+                      name="Chăm sóc khách hàng"
+                      img={cusser}
+                      des="Liên hệ và chúng tôi sẽ giải đáp cho bạn trong vòng 24 giờ làm việc."
+                    />
+                  </div>
+                </Col>
+
+                <Col md={6}>
+                  <div className="home__rulecontainer">
+                    <RuleItem
+                      name="Chất lượng"
+                      img={product}
+                      des="Chúng tôi tự tin bảo đảm chất lượng hàng hóa của mình."
+                    />
+                  </div>
+                </Col>
+              </Row>
+            </Container>
           </div>
         </div>
       </div>

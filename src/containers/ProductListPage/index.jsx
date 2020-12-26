@@ -33,7 +33,7 @@ const ProductsPage = (props) => {
                 className="caImgContainer"
                 to={`/${product.slug}/${product._id}/p`}
               >
-                <img src={generatePublicUrl(product.productPictures[0].img)} />
+                <img src={generatePublicUrl(product.productPictures[0].img)} alt=""/>
               </Link>
               <div>
                 <div className="caProductName">{product.name}</div>

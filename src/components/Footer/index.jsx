@@ -30,26 +30,26 @@ function Footer() {
                         <Col md={2}>
                             <div className="footer__adveninfo">
                                 <p className="footer__title">Hỗ trợ</p>
-                                <a href="" className="footer__infoadven">FAQ</a>
-                                <a href="" className="footer__infoadven">Liên hệ</a>
-                                <a href="" className="footer__infoadven">Chính sách</a>
+                                <button className="footer__infoadven">FAQ</button>
+                                <button className="footer__infoadven">Liên hệ</button>
+                                <button className="footer__infoadven">Chính sách</button>
                             </div>
                         </Col>
 
                         <Col md={2}>
                             <div className="footer__adveninfo">
                                 <p className="footer__title">Mạng xã hội</p>
-                                <a href="" className="footer__infoadven">Twitter</a>
-                                <a href="" className="footer__infoadven">Facebook</a>
-                                <a href=""  className="footer__infoadven">Instagram</a>
+                                <button className="footer__infoadven">Twitter</button>
+                                <button className="footer__infoadven">Facebook</button>
+                                <button  className="footer__infoadven">Instagram</button>
                             </div>
                         </Col>
 
                         <Col md={2}>
                             <div className="footer__adveninfo">
                                 <p className="footer__title">Kết nối</p>
-                                <a href="" className="footer__infoadven">Đăng ký</a>
-                                <a href="" className="footer__infoadven">Đăng nhập</a>
+                                <button className="footer__infoadven">Đăng ký</button>
+                                <button className="footer__infoadven">Đăng nhập</button>
                                 
                             </div>
                         </Col>

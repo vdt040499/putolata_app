@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../../../actions";
 import {
   MaterialButton,
-  MaterialInput,
+  MaterialInput
 } from "../../../../components/MaterialUI";
 
 const AddressForm = (props) => {
@@ -11,9 +11,6 @@ const AddressForm = (props) => {
   const [name, setName] = useState(initialData ? initialData.name : "");
   const [mobileNumber, setMobileNumber] = useState(
     initialData ? initialData.mobileNumber : ""
-  );
-  const [pinCode, setPinCode] = useState(
-    initialData ? initialData.pinCode : ""
   );
   const [locality, setLocality] = useState(
     initialData ? initialData.locality : ""
@@ -23,16 +20,6 @@ const AddressForm = (props) => {
   );
   const [cityDistrictTown, setCityDistrictTown] = useState(
     initialData ? initialData.cityDistrictTown : ""
-  );
-  const [state, setState] = useState(initialData ? initialData.state : "");
-  const [landmark, setLandmark] = useState(
-    initialData ? initialData.landmark : ""
-  );
-  const [alternatePhone, setAlternatePhone] = useState(
-    initialData ? initialData.alternatePhone : ""
-  );
-  const [addressType, setAddressType] = useState(
-    initialData ? initialData.addressType : ""
   );
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -49,14 +36,9 @@ const AddressForm = (props) => {
       address: {
         name,
         mobileNumber,
-        pinCode,
         locality,
         address,
         cityDistrictTown,
-        state,
-        landmark,
-        alternatePhone,
-        addressType,
       },
     };
     console.log(payload);
@@ -67,32 +49,27 @@ const AddressForm = (props) => {
     setSubmitFlag(true);
   };
 
-    useEffect(() => {
-      console.log("addressCount", user.address);
-      if (submitFlag) {
-        console.log("where are we", user);
-        let _address = {};
-        if (id) {
-          _address = {
-            _id: id,
-            name,
-            mobileNumber,
-            pinCode,
-            locality,
-            address,
-            cityDistrictTown,
-            state,
-            landmark,
-            alternatePhone,
-            addressType,
-          };
-        } else {
-          _address = user.address.slice(user.address.length - 1)[0];
-        }
-
-        props.onSubmitForm(_address);
+  useEffect(() => {
+    console.log("addressCount", user.address);
+    if (submitFlag) {
+      console.log("where are we", user);
+      let _address = {};
+      if (id) {
+        _address = {
+          _id: id,
+          name,
+          mobileNumber,
+          locality,
+          address,
+          cityDistrictTown,
+        };
+      } else {
+        _address = user.address.slice(user.address.length - 1)[0];
       }
-    }, [user.address]);
+
+      props.onSubmitForm(_address);
+    }
+  }, [user.address]);
 
   const renderAddressForm = () => {
     return (
@@ -116,9 +93,9 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="Pincode"
-              value={pinCode}
-              onChange={(e) => setPinCode(e.target.value)}
+              label="City/District/Town"
+              value={cityDistrictTown}
+              onChange={(e) => setCityDistrictTown(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
@@ -136,62 +113,6 @@ const AddressForm = (props) => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
-          </div>
-        </div>
-
-        <div className="flexRow">
-          <div style={inputContainer}>
-            <MaterialInput
-              label="City/District/Town"
-              value={cityDistrictTown}
-              onChange={(e) => setCityDistrictTown(e.target.value)}
-            />
-          </div>
-          <div style={inputContainer}>
-            <MaterialInput
-              label="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="flexRow">
-          <div style={inputContainer}>
-            <MaterialInput
-              label="Landmark (Optional)"
-              value={landmark}
-              onChange={(e) => setLandmark(e.target.value)}
-            />
-          </div>
-          <div style={inputContainer}>
-            <MaterialInput
-              label="Alternate Phone (Optional)"
-              value={alternatePhone}
-              onChange={(e) => setAlternatePhone(e.target.value)}
-            />
-          </div>
-        </div>
-        <div>
-          <label>Address Type</label>
-          <div className="flexRow">
-            <div>
-              <input
-                type="radio"
-                onClick={() => setAddressType("home")}
-                name="addressType"
-                value="home"
-              />
-              <span>Home</span>
-            </div>
-            <div>
-              <input
-                type="radio"
-                onClick={() => setAddressType("work")}
-                name="addressType"
-                value="work"
-              />
-              <span>Work</span>
-            </div>
           </div>
         </div>
         <div className="flexRow">

@@ -1,16 +1,15 @@
 import { useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
-import HomePage from "./containers/HomePage";
-import ProductListPage from "./containers/ProductListPage";
 import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { isUserLoggedIn, updateCart } from "./actions";
-import { Link } from "react-router-dom";
-import ProductDetailsPage from "./containers/ProductDetailsPage";
+import "./App.css";
 import CartPage from "./containers/CartPage";
 import CheckoutPage from "./containers/CheckoutPage";
-import OrderPage from "./containers/OrderPage";
+import HomePage from "./containers/HomePage";
 import OrderDetailsPage from "./containers/OrderDetailsPage";
+import OrderPage from "./containers/OrderPage";
+import ProductDetailsPage from "./containers/ProductDetailsPage";
+import ProductListPage from "./containers/ProductListPage";
 
 function App() {
   const dispatch = useDispatch();

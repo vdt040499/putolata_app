@@ -15,7 +15,7 @@ const initState = {
   message: "",
 };
 
-export default (state = initState, action) => {
+const authReducer = (state = initState, action) => {
   console.log(action);
 
   switch (action.type) {
@@ -62,7 +62,14 @@ export default (state = initState, action) => {
         error: action.payload.error,
       };
       break;
+    default:
+      state = {
+        ...state,
+      };
+      break;
   }
 
   return state;
 };
+
+export default authReducer;

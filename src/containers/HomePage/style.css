@@ -1,11 +1,12 @@
 * {
     font-family: 'Candara';
 }
+
 .home__banner {
     align-items: center;
 }
 
-.home__sidebanner {
+.home__sidebanner, .home__category {
     text-align: center;
 }
 
@@ -60,7 +61,7 @@
 }
 
 .intent {
-    width: 45vw;
+    width: 50vw;
 }
 
 .home__descript {
@@ -79,9 +80,10 @@
 .home__intentcontent {
     background-color: white;
     position: relative;
-    margin: 0px 1vw 0px 1vw;
+    margin: 10px 1vw 20px 1vw;
     border-radius: 50px 50px 0px 0px;
     padding-bottom: 1vh;
+   
 }
 
 .home__topperImg {
@@ -118,3 +120,32 @@
 .home__star {
     text-align: center;
 }
+
+.specialcontainer {
+    display: flex;
+}
+
+.home__category {
+    margin-top: 20px;
+}
+
+.home__ruleimg {
+    width: 200px;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 400px) {
+    .home__topperIcon {
+        margin: 30vh 0px 10px 0px;
+    }
+}
+
+@media (max-width: 767px) {
+    .home__topperIcon {
+        margin: 30vw 0px 10px 0px;
+    }
+    .home__intentcontent {
+        margin: 10px 3vw 20px 3vw;
+    }
+}
+

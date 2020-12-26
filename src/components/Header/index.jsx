@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import Badge from "@material-ui/core/Badge";
+import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -12,8 +12,8 @@ import logo from "../../assets/img/logo.png";
 import search from "../../assets/img/search.png";
 import welcome from "../../assets/img/welcome.png";
 import { MaterialInput, Modal } from "../MaterialUI";
-import "./style.css";
 import MenuHeader from "../MenuHeader";
+import "./style.css";
 
 function Header(props) {
   const [loginModal, setLoginModal] = useState(false);
@@ -22,7 +22,6 @@ function Header(props) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const cartStatus = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -63,17 +62,17 @@ function Header(props) {
     return (
       <div className="header__signpane">
         <div className="header__log">
-          <a className="link">
+          <button className="link">
             <button className="btn-hover color-4">{auth.user.fullName}</button>
-          </a>
+          </button>
           <Link className="link" to="/account/orders">
             <button className="btn-hover color-4">Đơn hàng</button>
           </Link>
-          <a className="link">
+          <button className="link">
             <button className="btn-hover color-4" onClick={logout}>
               Đăng xuất
             </button>
-          </a>
+          </button>
         </div>
       </div>
     );
@@ -83,7 +82,7 @@ function Header(props) {
     return (
       <div className="header__signpane">
         <div className="header__log">
-          <a
+          <button
             className="link"
             onClick={() => {
               setLoginModal(true);
@@ -91,8 +90,8 @@ function Header(props) {
             }}
           >
             <button className="btn-hover color-4">Đăng ký</button>
-          </a>
-          <a
+          </button>
+          <button
             className="link"
             onClick={() => {
               setSignup(false);
@@ -100,7 +99,7 @@ function Header(props) {
             }}
           >
             <button className="btn-hover color-4">Đăng nhập</button>
-          </a>
+          </button>
         </div>
       </div>
     );
