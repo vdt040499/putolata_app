@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { login, signout } from "../../actions";
+import { login, signout, signup as _signup } from "../../actions";
 import account from "../../assets/img/Account.png";
 import cart from "../../assets/img/Cart.png";
 import logo from "../../assets/img/logo.png";
@@ -25,8 +25,26 @@ function Header(props) {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  const userSignup = () => {
+    const user = { firstName, lastName, email, password };
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      password === ""
+    ) {
+      return;
+    }
+
+    dispatch(_signup(user));
+  }
+
   const userLogin = () => {
-    dispatch(login({ email, password }));
+    if (signup) {
+      userSignup();
+    } else {
+      dispatch(login({ email, password }));
+    }
   };
 
   const logout = () => {
@@ -254,7 +272,7 @@ function Header(props) {
                       <MaterialInput
                         type="text"
                         label="First Name"
-                        value={email}
+                        value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                       />
                     )}
@@ -262,7 +280,7 @@ function Header(props) {
                       <MaterialInput
                         type="text"
                         label="Last Name"
-                        value={email}
+                        value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                       />
                     )}

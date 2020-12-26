@@ -91,7 +91,7 @@ export const removeCartItem = (payload) => {
         });
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.toString());
     }
   };
 };
