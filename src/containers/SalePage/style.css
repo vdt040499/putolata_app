@@ -1,0 +1,18 @@
+.sales__bannergroup {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.sales__banner {
+    margin-top: 60px;
+    text-align: center;
+    width: 60vw;
+}
+
+.sales__sale {
+    width: 100%;
+}
+
+.hrstyle {
+    border: 2px solid #FFDBDB;
+}

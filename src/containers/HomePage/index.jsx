@@ -27,6 +27,7 @@ import SpecialProduct from "../../components/SpecialProduct";
 import axiosIntance from "../../helpers/axios";
 import { generatePublicUrl } from "../../urlConfig";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 const HomePage = () => {
@@ -49,8 +50,12 @@ const HomePage = () => {
             <Col md>
               <img src={slogan} className="home__slogan" alt="" />
               <div className="home__button">
-                <button className="home__type1">TÌM HIỂU</button>
-                <button className="home__type2">SẢN PHẨM</button>
+                <Link to="/aboutus">
+                  <button className="home__type1">TÌM HIỂU</button>
+                </Link>
+                <Link to="/sales">
+                  <button className="home__type2">SẢN PHẨM</button>
+                </Link>
               </div>
             </Col>
 
@@ -137,9 +142,22 @@ const HomePage = () => {
             <Container>
               <Row>
                 {bestSeller.map((product, index) => {
-                   if (index === 1) { return (
-                    <Col lg={6} md={4}>
-                      <SpecialProduct
+                  if (index === 1) {
+                    return (
+                      <Col lg={6} md={4}>
+                        <SpecialProduct
+                          title={product.name}
+                          price={product.price}
+                          image={generatePublicUrl(
+                            product.productPictures[0].img
+                          )}
+                          rating={5}
+                        />
+                      </Col>
+                    );
+                  } else {
+                    return (
+                      <Product
                         title={product.name}
                         price={product.price}
                         image={generatePublicUrl(
@@ -147,15 +165,8 @@ const HomePage = () => {
                         )}
                         rating={5}
                       />
-                    </Col>
-                  ) } else { return (
-                    <Product
-                      title={product.name}
-                      price={product.price}
-                      image={generatePublicUrl(product.productPictures[0].img)}
-                      rating={5}
-                    />
-                  )};
+                    );
+                  }
                 })}
                 {/* <Col lg={3} md={4}>
                   <Product
