@@ -42,10 +42,7 @@ const MenuHeader = () => {
         <div className="header__column">
           <div className="header__subcolumn">
             {category.parentId ? (
-              <a
-                className="link"
-                href={`/${category.slug}?cid=${category._id}&type=${category.type}`}
-              >
+              <a className="link" href={`/${category.slug}`}>
                 {category.name}
               </a>
             ) : (
