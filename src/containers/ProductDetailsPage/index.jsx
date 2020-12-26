@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { getProductDetailsById } from "../../actions";
+import { addToCart, getProductDetailsById } from "../../actions";
 import commenticon from "../../assets/img/Image 38.png";
 import smallicon from "../../assets/img/Image 39.png";
 import comtava from "../../assets/img/Image 40.png";
@@ -27,6 +27,15 @@ const ProductDetailsPage = (props) => {
   const [slider2, setSlider2] = useState(null);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
+  console.log(product.productDetails);
+  const {
+    name,
+    discount,
+    salePrice,
+    description,
+    price,
+    quantity,
+  } = product.productDetails;
 
   useEffect(() => {
     setNav1(slider1);
@@ -68,7 +77,11 @@ const ProductDetailsPage = (props) => {
 
   //Map to slides
   const slidesData = product.productDetails.productPictures.map((slide) => {
-    return { id: slide._id, originalImg: slide.img, img: `${slide.img}-${slide._id}` };
+    return {
+      id: slide._id,
+      originalImg: slide.img,
+      img: `${slide.img}-${slide._id}`,
+    };
   });
   console.log(slidesData);
 
@@ -217,17 +230,15 @@ const ProductDetailsPage = (props) => {
                   asNavFor={nav2}
                   ref={(slider) => setSlider1(slider)}
                 >
-                  {slidesData.map(
-                    (slide) => (
-                      <div className="slick-slide" key={slide.id}>
-                        <img
-                          className="slick-slide-image"
-                          src={slide.img}
-                          alt=""
-                        />
-                      </div>
-                    )
-                  )}
+                  {slidesData.map((slide) => (
+                    <div className="slick-slide" key={slide.id}>
+                      <img
+                        className="slick-slide-image"
+                        src={slide.img}
+                        alt=""
+                      />
+                    </div>
+                  ))}
                 </Slider>
                 <div className="thumbnail-slider-wrap">
                   <Slider
@@ -235,17 +246,15 @@ const ProductDetailsPage = (props) => {
                     asNavFor={nav1}
                     ref={(slider) => setSlider2(slider)}
                   >
-                    {slidesData.map(
-                      (slide) => (
-                        <div className="slick-slide" key={slide.id}>
-                          <img
-                            className="slick-slide-image"
-                            src={slide.img}
-                            alt=""
-                          />
-                        </div>
-                      )
-                    )}
+                    {slidesData.map((slide) => (
+                      <div className="slick-slide" key={slide.id}>
+                        <img
+                          className="slick-slide-image"
+                          src={slide.img}
+                          alt=""
+                        />
+                      </div>
+                    ))}
                   </Slider>
                 </div>
               </div>
@@ -253,13 +262,8 @@ const ProductDetailsPage = (props) => {
 
             <Col md={6}>
               <div className="productdetails__details">
-                <p className="productdetails__title">
-                  Vỏ Chanh Dây Sấy Dẻo 145G - MS1999
-                </p>
-                <p className="productdetails__srtdes">
-                  Vỏ chanh dây được gọt rửa cẩn thận, ngâm vào dịch trái trước
-                  khi sấy.
-                </p>
+                <p className="productdetails__title">{name}</p>
+                <p className="productdetails__srtdes">{description}</p>
                 <div className="productdetails__rating">
                   <div className="productdetails__starrate">
                     <i class="fa fa-star"></i>
@@ -269,22 +273,24 @@ const ProductDetailsPage = (props) => {
                     <i class="fa fa-star"></i>
                   </div>
 
-                  <p className="productdetails__rate">75 đánh giá</p>
-                  <p className="productdetails__rate">25 bình luận</p>
+                  {/* <p className="productdetails__rate">75 đánh giá</p>
+                  <p className="productdetails__rate">25 bình luận</p> */}
                 </div>
 
                 <div className="productdetails__price">
-                  <p className="productdetails__actprice">100.000 VNĐ</p>
+                  <p className="productdetails__actprice">{salePrice} VNĐ</p>
                   <strike>
-                    <p className="productdetails__fakeprice">500.000 VNĐ</p>
+                    <p className="productdetails__fakeprice">{price} VNĐ</p>
                   </strike>
                 </div>
 
                 <div className="productdetails__status">
                   <p className="productdetails__sttitle">TÌNH TRẠNG: </p>
-                  <p className="productdetails__sta">CÒN HÀNG</p>
+                  <p className="productdetails__sta">
+                    {quantity > 0 ? "CÒN HÀNG" : "HẾT HÀNG"}
+                  </p>
                 </div>
-                <div className="productdetails__qty">
+                {/* <div className="productdetails__qty">
                   <p className="productdetails__sttitle">SỐ LƯỢNG: </p>
                   <FormControl>
                     <Select value={qty} onChange={handleChange}>
@@ -300,13 +306,25 @@ const ProductDetailsPage = (props) => {
                       <MenuItem value={10}>10</MenuItem>
                     </Select>
                   </FormControl>
-                </div>
+                </div> */}
 
                 <div className="productdetails__button">
-                  <button className="productdetails__addbutton">
+                  <button
+                    className="productdetails__addbutton"
+                    onClick={() => {
+                      const { _id, name, price } = product.productDetails;
+                      const img = product.productDetails.productPictures[0].img;
+                      dispatch(addToCart({ _id, name, price, img }));
+                    }}
+                  >
                     THÊM VÀO GIỎ
                   </button>
-                  <button className="productdetails__buynow">MUA NGAY</button>
+                  <button className="productdetails__buynow" onClick={() => {
+                      const { _id, name, price } = product.productDetails;
+                      const img = product.productDetails.productPictures[0].img;
+                      dispatch(addToCart({ _id, name, price, img }));
+                      props.history.push(`/cart`);
+                    }}>MUA NGAY</button>
                 </div>
                 <ul>
                   <li className="productdetails__srtdes">
@@ -370,7 +388,7 @@ const ProductDetailsPage = (props) => {
             <button className="seemorebutton">XEM THÊM</button>
           </div>
 
-          <p className="productdetails__titlecate">
+          {/* <p className="productdetails__titlecate">
             <span>
               <img
                 className="productdetails__catetitle"
@@ -435,7 +453,7 @@ const ProductDetailsPage = (props) => {
                 <span> - 20/10/2020 0h30p - Đã mua hàng</span>
               </p>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
       </div>
     </Layout>

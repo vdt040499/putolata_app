@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import { getAllProducts } from "../../actions";
 import cusser from "../../assets/img/cusser.png";
 import deli from "../../assets/img/deli.png";
 import banner from "../../assets/img/home-img.png";
@@ -23,9 +24,23 @@ import Layout from "../../components/Layout";
 import Product from "../../components/Product";
 import RuleItem from "../../components/RuleItem";
 import SpecialProduct from "../../components/SpecialProduct";
+import axiosIntance from "../../helpers/axios";
+import { generatePublicUrl } from "../../urlConfig";
+import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product);
+
+  const newProduct = product.allProducts.sort((a, b) => {
+    return Date(a.createdAt) - Date(b.createdAt);
+  });
+  const bestSeller = product.allProducts.sort((a, b) => {
+    return b.sold - a.sold;
+  });
+
   return (
     <Layout>
       <div className="content">
@@ -100,89 +115,16 @@ const HomePage = () => {
           </p>
           <Container>
             <Row>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
-            </Row>
-
-            <Row>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
-              <Col lg={3} md={6}>
-                <Product
-                  title="Misha Collins Famous Coloring"
-                  price={999.99}
-                  image={
-                    "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                  }
-                  rating={5}
-                />
-              </Col>
+              {newProduct.map((product) => (
+                <Col lg={3} md={6}>
+                  <Product
+                    title={product.name}
+                    price={product.price}
+                    image={generatePublicUrl(product.productPictures[0].img)}
+                    rating={5}
+                  />
+                </Col>
+              ))}
             </Row>
           </Container>
           <button className="home__type1">XEM THÊM</button>
@@ -194,9 +136,30 @@ const HomePage = () => {
           <div className="home__starcontent">
             <Container>
               <Row>
-                <Col lg={3} md={4}>
+                {bestSeller.map((product, index) => {
+                   if (index === 1) { return (
+                    <Col lg={6} md={4}>
+                      <SpecialProduct
+                        title={product.name}
+                        price={product.price}
+                        image={generatePublicUrl(
+                          product.productPictures[0].img
+                        )}
+                        rating={5}
+                      />
+                    </Col>
+                  ) } else { return (
+                    <Product
+                      title={product.name}
+                      price={product.price}
+                      image={generatePublicUrl(product.productPictures[0].img)}
+                      rating={5}
+                    />
+                  )};
+                })}
+                {/* <Col lg={3} md={4}>
                   <Product
-                    title="Misha Collins Famous Coloring"
+                    title={bestSeller[0].name}
                     price={999.99}
                     image={
                       "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
@@ -206,11 +169,11 @@ const HomePage = () => {
                 </Col>
                 <Col lg={6} md={4}>
                   <SpecialProduct
-                    title="Misha Collins Famous Coloring"
-                    price={999.99}
-                    image={
-                      "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                    }
+                    title={bestSeller[0].name}
+                    price={bestSeller[0].price}
+                    image={generatePublicUrl(
+                      bestSeller[0].productPictures[0].img
+                    )}
                     rating={5}
                   />
                 </Col>
@@ -223,7 +186,7 @@ const HomePage = () => {
                     }
                     rating={5}
                   />
-                </Col>
+                </Col> */}
               </Row>
             </Container>
             <button className="home__type2">XEM THÊM</button>

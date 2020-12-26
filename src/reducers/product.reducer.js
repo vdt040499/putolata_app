@@ -1,14 +1,8 @@
 import { productConstants } from "../actions/constants";
 
 const initialState = {
+  allProducts: [],
   products: [],
-  productsByPrice: {
-    under5k: [],
-    under10k: [],
-    under15k: [],
-    under20k: [],
-    under30k: [],
-  },
   pageRequest: false,
   page: {},
   error: null,
@@ -16,16 +10,19 @@ const initialState = {
   loading: false,
 };
 
-const productReducer =  (state = initialState, action) => {
+const productReducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
+    case productConstants.GET_ALL_PRODUCTS:
+      state = {
+        ...state,
+        allProducts: action.payload.products,
+      };
+      break;
     case productConstants.GET_PRODUCTS_BY_SLUG:
       state = {
         ...state,
         products: action.payload.products,
-        productsByPrice: {
-          ...action.payload.productsByPrice,
-        },
       };
       break;
     case productConstants.GET_PRODUCT_PAGE_REQUEST:
