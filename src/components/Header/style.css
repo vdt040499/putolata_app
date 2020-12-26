@@ -102,14 +102,6 @@ input {
     transition: all 0.2s ease-in-out;
 }
 
-.dropdowncontent {
-    display:none;
-}
-
-.header__dropdown:hover > .dropdowncontent {
-    display: block;
-}
-
 /* .header__dropdown:hover > .header__submenu {
     display: block;
     z-index: 10;

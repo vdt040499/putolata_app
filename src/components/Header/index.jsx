@@ -13,6 +13,7 @@ import search from "../../assets/img/search.png";
 import welcome from "../../assets/img/welcome.png";
 import { MaterialInput, Modal } from "../MaterialUI";
 import "./style.css";
+import MenuHeader from "../MenuHeader";
 
 function Header(props) {
   const [loginModal, setLoginModal] = useState(false);
@@ -22,6 +23,7 @@ function Header(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const cartStatus = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -37,7 +39,7 @@ function Header(props) {
     }
 
     dispatch(_signup(user));
-  }
+  };
 
   const userLogin = () => {
     if (signup) {
@@ -121,93 +123,7 @@ function Header(props) {
           </li>
 
           <li className="header__dropdown">
-            <Link to="/" className="link">
-              Sản phẩm
-            </Link>
-            <div className="dropdowncontent">
-              <div className="header__submenu">
-                <div className="header__column">
-                  <Link to="/" className="link" className="header__subtitle">
-                    ĐỒ ĂN
-                  </Link>
-                  <img
-                    src="https://image.freepik.com/free-photo/eastern-sweets-turkish-delight-lokum-with-nuts-top-view_114579-8401.jpg"
-                    alt=""
-                    className="header__columnImage"
-                  />
-                </div>
-
-                <div className="header__column">
-                  <div className="header__subcolumn">
-                    <Link to="/" className="link">
-                      <i class="fas fa-atom"></i>Mứt
-                    </Link>
-                    <Link to="/" className="link">
-                      Trái cây sấy
-                    </Link>
-                    <Link to="/" className="link">
-                      Khô
-                    </Link>
-                    <Link to="/" className="link">
-                      Kẹo
-                    </Link>
-                    <Link to="/" className="link">
-                      Snack
-                    </Link>
-                    <Link to="/" className="link">
-                      Bánh ngọt
-                    </Link>
-                    <Link to="/" className="link">
-                      Ngũ cốc
-                    </Link>
-                    <Link to="/" className="link">
-                      Hạt khô
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Categories */}
-                <div className="header__column">
-                  <Link className="link" className="header__subtitle" to="/">
-                    ĐỒ UỐNG
-                  </Link>
-                  <img
-                    src="https://image.freepik.com/free-psd/mockup-liquid-bottle-labels_53876-65817.jpg"
-                    alt=""
-                    className="header__columnImage"
-                  />
-                </div>
-
-                <div className="header__column">
-                  <div className="header__subcolumn">
-                    <Link className="link" to="/">
-                      Nước khoáng
-                    </Link>
-                    <Link className="link" to="/">
-                      Sữa
-                    </Link>
-                    <Link className="link" to="/">
-                      Tăng lực
-                    </Link>
-                    <Link className="link" to="/">
-                      Dưỡng chất
-                    </Link>
-                    <Link className="link" to="/">
-                      Nước ngọt
-                    </Link>
-                    <Link className="link" to="/">
-                      Trà
-                    </Link>
-                    <Link className="link" to="/">
-                      Trà sữa
-                    </Link>
-                    <Link className="link" to="/">
-                      Nước có ga{" "}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MenuHeader />
           </li>
 
           {/* Links */}
@@ -235,7 +151,10 @@ function Header(props) {
 
           {/* Cart */}
           <li>
-            <Badge badgeContent={4} color="secondary">
+            <Badge
+              badgeContent={Object.keys(cartStatus.cartItems).length}
+              color="secondary"
+            >
               <Link className="link" to="/cart">
                 <img src={cart} className="header__icon" alt="" />
               </Link>

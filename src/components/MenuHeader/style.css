@@ -65,3 +65,11 @@
     text-decoration: none;
     color: #707070;
 }
+
+.dropdowncontent {
+    display:none;
+}
+
+.header__dropdown:hover > .dropdowncontent {
+    display: block;
+}
