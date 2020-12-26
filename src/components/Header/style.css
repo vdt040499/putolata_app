@@ -308,3 +308,103 @@ button {
 .color-5 {
     background-image: linear-gradient(to right, #fadcb2 0%, #fde4db 51%, #ff9e9e 100%);
 }
+
+.forgetpassword {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Cambria";
+}
+
+.forgetpassword__container {
+    margin: 30px 0px;
+    transition: all 0.3s;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ebebeb;
+}
+
+.forgetpassword__container:hover {
+    box-shadow: 1px 1px 5px 2px#f0f0f0;
+    transform: scale(1.05, 1.05);
+}
+
+.password__logo {
+    width: 150px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.forgetpassword__title {
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4FABF7;
+}
+
+.forgetpassword__content {
+    padding: 0px 4vw;
+}
+.forgetpassword__button {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.forgetpassword__top {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgetpassword__button:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.forgetpassword__button:focus {
+    outline: none;
+}
+
+.forgetpassword__button .color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+.forgetpassword__button .color-1 {
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+
+
+.forgetpassword__submit {
+    margin: 10px 0px 30px 0px;
+    text-align: center;
+}
+
+.normallink {
+    text-align: center;
+    color: rgb(255, 195, 195);
+    text-decoration: none;
+    font-style: italic;
+}
+
+.normallink:hover{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(134, 255, 208);
+}

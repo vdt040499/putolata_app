@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,12 +11,17 @@ import billred from "../../assets/img/Image 47.png";
 import edit from "../../assets/img/Image 48.png";
 import avatar from "../../assets/img/NoPath - Copy (5).png";
 import Layout from "../../components/Layout";
+import { MaterialInput, Modal } from "../../components/MaterialUI";
 import "./style.css";
 
 function Account() {
+  const [editModal, setEditModal] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getOrders());
@@ -34,9 +39,9 @@ function Account() {
                     <p className="account__title">Hồ sơ cá nhân</p>
                   </div>
                   <div className="account__button">
-                    <Link to="/editaccountinfo">
+                    <button onClick={() => setEditModal(true)}>
                       <img src={edit} className="account__editbutton" alt="" />
-                    </Link>
+                    </button>
                   </div>
 
                   <div className="account__contentcontain">
@@ -58,13 +63,13 @@ function Account() {
                           </p>
                         </div>
                         <p className="account__info">USERNAME:</p>
-                        <p className="account__details">{auth.user.lastName + " " + auth.user.firstName}</p>
+                        <p className="account__details">
+                          {auth.user.lastName + " " + auth.user.firstName}
+                        </p>
                         <p className="account__info">PASSWORD:</p>
                         <p className="account__details">*********</p>
                         <p className="account__info">EMAIL:</p>
-                        <p className="account__details">
-                          {auth.user.email}
-                        </p>
+                        <p className="account__details">{auth.user.email}</p>
                       </Col>
                     </Row>
                   </div>
@@ -117,6 +122,56 @@ function Account() {
           </Row>
         </Container>
       </div>
+
+      <Modal visible={editModal} onClose={() => setEditModal(false)}>
+        <div className="editaccount">
+          <Container>
+            <Row className="justify-content-md-center">
+              <Col md={9}>
+                <p className="editaccount__maintitle">Chỉnh sửa thông tin</p>
+                <div className="editaccount__container">
+                  <div className="editaccount__topper">
+                    <p className="editaccount__title">Hồ sơ cá nhân</p>
+                  </div>
+                  <div className="editaccount__maincontent">
+                    <div className="editaccount__titleinfo">
+                      <img src={starbling} className="editdotstart" alt="" />
+                      <p className="editaccount__infotitle">
+                        Thông tin tài khoản
+                      </p>
+                    </div>
+                    <div className="editaccount__textfield">
+                      <MaterialInput
+                        type="text"
+                        label="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                      />
+                      <MaterialInput
+                        type="text"
+                        label="Last Name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                      <MaterialInput
+                        type="password"
+                        label="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        // rightElement={<a href="#">Forgot?</a>}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+
+            <Row className="justify-content-md-center">
+              <button className="editaccount__type1">XÁC NHẬN</button>
+            </Row>
+          </Container>
+        </div>
+      </Modal>
     </Layout>
   );
 }

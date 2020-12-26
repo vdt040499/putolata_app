@@ -11,12 +11,14 @@ import cart from "../../assets/img/Cart.png";
 import logo from "../../assets/img/logo.png";
 import search from "../../assets/img/search.png";
 import welcome from "../../assets/img/welcome.png";
+import icon from "../../assets/img/Image 49.png";
 import { MaterialInput, Modal } from "../MaterialUI";
 import MenuHeader from "../MenuHeader";
 import "./style.css";
 
 function Header(props) {
   const [loginModal, setLoginModal] = useState(false);
+  const [forgetModal, setForgetModal] = useState(false);
   const [signup, setSignup] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -50,6 +52,11 @@ function Header(props) {
 
   const logout = () => {
     dispatch(signout());
+  };
+
+  const openForgetModal = () => {
+    setLoginModal(false);
+    setForgetModal(true);
   };
 
   useEffect(() => {
@@ -217,9 +224,12 @@ function Header(props) {
                     />
                     {signup ? null : (
                       <div className="login__textcontent">
-                        <a href="/forgetpassword" className="login__text">
+                        <button
+                          onClick={openForgetModal}
+                          className="login__text"
+                        >
                           Quên mật khẩu?
-                        </a>
+                        </button>
                       </div>
                     )}
                     <button
@@ -233,6 +243,44 @@ function Header(props) {
               </Row>
             </Container>
           </div>
+        </div>
+      </Modal>
+      <Modal visible={forgetModal} onClose={() => setForgetModal(false)}>
+        <div className="forgetpassword">
+          <Container>
+            <Row className="justify-content-md-center">
+              <Col md={12}>
+                <div className="forgetpassword__container">
+                  <div className="forgetpassword__top">
+                    <img src={icon} alt="" className="password__logo" />
+                    <p className="forgetpassword__title">Quên mật khẩu?</p>
+                  </div>
+                  <div className="forgetpassword__content">
+                    <MaterialInput
+                      type="text"
+                      label="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <div className="forgetpassword__submit">
+                      <Link
+                        to="/resetpassword"
+                        className="forgetpassword__button"
+                      >
+                        <button className="forgetpassword__button color-9">
+                          GỬI MÃ XÁC NHẬN
+                        </button>
+                      </Link>
+
+                      <Link to="/register" className="normallink">
+                        Chưa có tài khoản? Đăng ký ngay!
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
       </Modal>
     </div>
