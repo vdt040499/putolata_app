@@ -5,8 +5,11 @@ import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
 import CartItem from "./components/CartItem";
 import { MaterialButton } from "../../components/MaterialUI";
+import { Table, Container } from "react-bootstrap";
 import "./style.css";
 import PriceDetails from "../../components/PriceDetails";
+import carticon from "../../assets/img/Image 41.png";
+import { Link } from "react-router-dom";
 
 /*
 Before Login
@@ -19,7 +22,6 @@ if logged in then add products to users cart database from localStorage
 const CartPage = (props) => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
-  // const cartItems = cart.cartItems;
   const [cartItems, setCartItems] = useState(cart.cartItems);
   const dispatch = useDispatch();
 
@@ -65,49 +67,60 @@ const CartPage = (props) => {
 
   return (
     <Layout>
-      <div className="cartContainer" style={{ alignItems: "flex-start" }}>
-        <Card
-          headerLeft={`My Cart`}
-          headerRight={<div>Deliver to</div>}
-          style={{ width: "calc(100% - 400px)", overflow: "hidden" }}
-        >
-          {Object.keys(cartItems).map((key, index) => (
-            <CartItem
-              key={index}
-              cartItem={cartItems[key]}
-              onQuantityInc={onQuantityIncrement}
-              onQuantityDec={onQuantityDecrement}
-              onRemoveCartItem={onRemoveCartItem}
-            />
-          ))}
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              background: "#ffffff",
-              justifyContent: "flex-end",
-              boxShadow: "0 0 10px 10px #eee",
-              padding: "10px 0",
-              boxSizing: "border-box",
-            }}
-          >
-            <div style={{ width: "250px" }}>
-              <MaterialButton
-                title="PLACE ORDER"
-                onClick={() => props.history.push(`/checkout`)}
-              />
+      <div className="cartitem">
+        <div className="cartitem__container">
+          <Container>
+            <div className="cartitem__topper">
+              <img src={carticon} className="cart__icon" alt="" />
+              <p className="cartitem__title">Giỏ hàng của bạn</p>
             </div>
-          </div>
-        </Card>
-        <PriceDetails
-          totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-            return qty + cart.cartItems[key].qty;
-          }, 0)}
-          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-            const { price, qty } = cart.cartItems[key];
-            return totalPrice + price * qty;
-          }, 0)}
-        />
+            <div className="itemscontainer">
+              <Table responsive hover>
+                <thead className="cartitem__thread">
+                  <tr>
+                    <th>STT</th>
+                    <th>Minh họa</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(cartItems).map((key, index) => (
+                    <CartItem
+                      key={index}
+                      cartIndex={index}
+                      cartItem={cartItems[key]}
+                      onQuantityInc={onQuantityIncrement}
+                      onQuantityDec={onQuantityDecrement}
+                      onRemoveCartItem={onRemoveCartItem}
+                    />
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+            <div className="cartitem__total">
+              <p className="cartitem__totalprice">
+                {" "}
+                TỔNG TIỀN:{" "}
+                {Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+                  const { price, qty } = cart.cartItems[key];
+                  return totalPrice + price * qty;
+                }, 0)}{" "}
+                VNĐ
+              </p>
+              <div className="cartitem__buttons">
+                <button onClick={() => props.history.push(`/checkout`)}>
+                  <button className="pay">Thanh toán</button>
+                </button>
+                <Link to="/">
+                  <button className="continue">Tiếp tục mua sắm</button>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </div>
       </div>
     </Layout>
   );

@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import {
   Anchor,
   MaterialButton,
-  MaterialInput
+  MaterialInput,
 } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
 // import PriceDetails from "../../components/PriceDetails";
@@ -139,31 +139,31 @@ const CheckoutPage = (props) => {
     setPaymentOption(true);
   };
 
-    const onConfirmOrder = () => {
-      const totalAmount = Object.keys(cart.cartItems).reduce(
-        (totalPrice, key) => {
-          const { price, qty } = cart.cartItems[key];
-          return totalPrice + price * qty;
-        },
-        0
-      );
-      const items = Object.keys(cart.cartItems).map((key) => ({
-        productId: key,
-        payablePrice: cart.cartItems[key].price,
-        purchasedQty: cart.cartItems[key].qty,
-      }));
-      const payload = {
-        addressId: selectedAddress._id,
-        totalAmount,
-        items,
-        paymentStatus: "pending",
-        paymentType: "cod",
-      };
-
-      console.log(payload);
-      dispatch(addOrder(payload));
-      setConfirmOrder(true);
+  const onConfirmOrder = () => {
+    const totalAmount = Object.keys(cart.cartItems).reduce(
+      (totalPrice, key) => {
+        const { price, qty } = cart.cartItems[key];
+        return totalPrice + price * qty;
+      },
+      0
+    );
+    const items = Object.keys(cart.cartItems).map((key) => ({
+      productId: key,
+      payablePrice: cart.cartItems[key].price,
+      purchasedQty: cart.cartItems[key].qty,
+    }));
+    const payload = {
+      addressId: selectedAddress._id,
+      totalAmount,
+      items,
+      paymentStatus: "pending",
+      paymentType: "cod",
     };
+
+    console.log(payload);
+    dispatch(addOrder(payload));
+    setConfirmOrder(true);
+  };
 
   useEffect(() => {
     auth.authenticate && dispatch(getAddress());
@@ -188,7 +188,10 @@ const CheckoutPage = (props) => {
 
   return (
     <Layout>
-      <div className="cartContainer" style={{ alignItems: "flex-start" }}>
+      <div
+        className="cartContainer"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
         <div className="checkoutContainer">
           {/* check if user logged in or not */}
           <CheckoutStep
@@ -317,17 +320,6 @@ const CheckoutPage = (props) => {
             }
           />
         </div>
-
-        {/* Price Component */}
-        <PriceDetails
-          totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-            return qty + cart.cartItems[key].qty;
-          }, 0)}
-          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-            const { price, qty } = cart.cartItems[key];
-            return totalPrice + price * qty;
-          }, 0)}
-        />
       </div>
     </Layout>
   );

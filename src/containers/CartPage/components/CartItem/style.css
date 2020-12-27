@@ -1,62 +1,109 @@
-.cartItemContainer{
-    margin: 10px 5px;
-}
-.cartProImgContainer{
-    width: 112px;
-    height: 112px;
-    overflow: hidden;
+.cartitem__topper {
     text-align: center;
-}
-.cartProImgContainer img{
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-.cartProImgContainer{
-    width: 112px;
-    height: 112px;
-    margin: 0 10px;
-    overflow: hidden;
-    text-align: center;
-}
-.cartProImgContainer img{
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-.cartItemDetails{
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
 }
 
-.cartActionBtn{
-    margin: 0 10px;
-    font-family: 'Roboto';
-    font-weight: 600;
+.cart__icon {
+    margin-top: 20px;
+    width: 150px;
+}
+
+.cartitem__title {
     text-transform: uppercase;
-    background: transparent;
-    border: none;
-    color: #212121;
-    cursor: pointer;
-    font-size: 15px;
+    font-size: 25px;
+    color: #F69996;
+    font-weight: 700;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 20px 0px;
 }
-.quantityControl{
-    display: flex;
-    align-items: center;
+
+.cartitem__img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
 }
-.quantityControl button{
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+
+.cartitem__thread {
+    text-align: center;
+    background-color: #FFD6D6;
+    color: white;
+    text-transform: uppercase;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-color: transparent;
+    border-spacing: 0px;
+}
+
+.cartitem__thread > td {
+    color: #F69996;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    font-weight: bold;
+}
+
+.minus, .plus {
+    width: 20px;
     border: none;
-    border: 1px solid #c2c2c2;
+    outline: none;
+    font-weight: bold;
+    margin: 0px 5px;
+    background-color: #fff3f3;
+    color: #F69996;
+}
+
+.removebutton {
+    border: none;
+    outline: none;
+    width: 20px;
     background-color: transparent;
+    color: #F69996;
+    font-weight: bold;
 }
-.quantityControl input{
-    width: 40px;
-    height: 20px;
-    border: 1px solid #c2c2c2;
-    margin: 0 5px;
+
+.itemscontainer {
+    box-shadow: 1px 1px 10px 2px rgb(247, 247, 247);
+}
+
+.cartitem__total {
+    text-align: end;
+}
+
+.cartitem__totalprice {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 25px;
+    color: #F68C8C;
+    font-weight: bold;
+}
+.pay, .continue, .delete {
+    outline: none;
+    border: none;
+    width: 150px;
+    padding: 5px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px 1px rgb(225, 225, 225);
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.pay {
+    background-color: #FFB9B9;
+    color: white;
+}
+
+.continue {
+    background-color: #FFECEC;
+    color: salmon;
+}
+
+.delete {
+    background-color: white;
+    border: 2px solid #FB9696;
+    color: #FFAFAF;
+}
+
+.pay:hover, .continue:hover, .delete:hover {
+    background-color: rgb(255, 212, 212);
+}
+
+td {
     text-align: center;
 }
