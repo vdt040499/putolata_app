@@ -5,13 +5,23 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { login, signout, signup as _signup } from "../../actions";
+import { useSnackbar } from "notistack";
+import {
+  forgetPassword,
+  login,
+  resetError,
+  resetPassword,
+  resetTokenSuccess,
+  signout,
+  signup as _signup,
+} from "../../actions";
 import account from "../../assets/img/Account.png";
 import cart from "../../assets/img/Cart.png";
 import logo from "../../assets/img/logo.png";
 import search from "../../assets/img/search.png";
 import welcome from "../../assets/img/welcome.png";
 import icon from "../../assets/img/Image 49.png";
+import resetIcon from "../../assets/img/Image 50.png";
 import { MaterialInput, Modal } from "../MaterialUI";
 import MenuHeader from "../MenuHeader";
 import "./style.css";
@@ -20,13 +30,26 @@ function Header(props) {
   const [loginModal, setLoginModal] = useState(false);
   const [forgetModal, setForgetModal] = useState(false);
   const [signup, setSignup] = useState(false);
+  const [reset, setReset] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [emailForgot, setEmailForgot] = useState("");
   const [password, setPassword] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [retypePass, setRetypePass] = useState("");
+  const [verifiedCode, setVerifiedCode] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
   const cartStatus = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (auth.error !== null) {
+      enqueueSnackbar(auth.error, { variant: "error" });
+      dispatch(resetError());
+    }
+  }, [auth.error]);
 
   const userSignup = () => {
     const user = { firstName, lastName, email, password };
@@ -57,6 +80,32 @@ function Header(props) {
   const openForgetModal = () => {
     setLoginModal(false);
     setForgetModal(true);
+  };
+
+  const requestForgotPass = (e) => {
+    if (reset) {
+      if (newPass !== retypePass) {
+        enqueueSnackbar("Mật khẩu không khớp", { variant: "error" });
+      }
+
+      const payload = { password: newPass, passwordResetToken: verifiedCode };
+      dispatch(resetPassword(payload));
+      console.log(auth.user.tokenSuccess);
+      if (auth.tokenSuccess) {
+        enqueueSnackbar("Thay đổi password thành công", { variant: "success" });
+      }
+      setNewPass("");
+      setRetypePass("");
+      setVerifiedCode("");
+      dispatch(resetTokenSuccess());
+      setReset(false);
+      setForgetModal(false);
+    } else {
+      dispatch(forgetPassword({ email: emailForgot }));
+      setEmailForgot("");
+      setForgetModal(true);
+      setReset(true);
+    }
   };
 
   useEffect(() => {
@@ -251,30 +300,74 @@ function Header(props) {
             <Row className="justify-content-md-center">
               <Col md={12}>
                 <div className="forgetpassword__container">
-                  <div className="forgetpassword__top">
-                    <img src={icon} alt="" className="password__logo" />
-                    <p className="forgetpassword__title">Quên mật khẩu?</p>
-                  </div>
-                  <div className="forgetpassword__content">
-                    <MaterialInput
-                      type="text"
-                      label="Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <div className="forgetpassword__submit">
-                      <Link
-                        to="/resetpassword"
-                        className="forgetpassword__button"
-                      >
-                        <button className="forgetpassword__button color-9">
-                          GỬI MÃ XÁC NHẬN
-                        </button>
-                      </Link>
+                  {reset ? (
+                    <div className="forgetpassword__top">
+                      <img src={resetIcon} alt="" className="password__logo" />
+                      <p className="forgetpassword__title">Đặt lại mật khẩu</p>
+                    </div>
+                  ) : (
+                    <div className="forgetpassword__top">
+                      <img src={icon} alt="" className="password__logo" />
+                      <p className="forgetpassword__title">Quên mật khẩu?</p>
+                    </div>
+                  )}
 
-                      <Link to="/register" className="normallink">
+                  <div className="forgetpassword__content">
+                    {!reset && (
+                      <MaterialInput
+                        type="text"
+                        label="Email"
+                        value={emailForgot}
+                        onChange={(e) => setEmailForgot(e.target.value)}
+                      />
+                    )}
+
+                    {reset && (
+                      <MaterialInput
+                        type="text"
+                        label="New Password"
+                        value={newPass}
+                        onChange={(e) => setNewPass(e.target.value)}
+                      />
+                    )}
+
+                    {reset && (
+                      <MaterialInput
+                        type="text"
+                        label="Email"
+                        value={retypePass}
+                        onChange={(e) => setRetypePass(e.target.value)}
+                      />
+                    )}
+
+                    {reset && (
+                      <MaterialInput
+                        type="text"
+                        label="Verified Code"
+                        value={verifiedCode}
+                        onChange={(e) => setVerifiedCode(e.target.value)}
+                      />
+                    )}
+
+                    <div className="forgetpassword__submit">
+                      <button className="forgetpassword__button">
+                        <button
+                          onClick={requestForgotPass}
+                          className="forgetpassword__button color-9"
+                        >
+                          {!reset ? "GỬI MÃ XÁC NHẬN" : "XÁC NHẬN"}
+                        </button>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setSignup(false);
+                          setLoginModal(true);
+                        }}
+                        className="normallink"
+                      >
                         Chưa có tài khoản? Đăng ký ngay!
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>

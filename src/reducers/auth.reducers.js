@@ -12,6 +12,7 @@ const initState = {
   authenticating: false,
   loading: false,
   error: null,
+  tokenSuccess: null,
   message: "",
 };
 
@@ -60,6 +61,42 @@ const authReducer = (state = initState, action) => {
       state = {
         ...state,
         error: action.payload.error,
+      };
+      break;
+    case authConstants.FORGOT_PASSWORD_REQUEST:
+      break;
+    case authConstants.FORGOT_PASSWORD_SUCCESS:
+      break;
+    case authConstants.FORGOT_PASSWORD_FAILURE:
+      state = {
+        ...state,
+        error: action.payload.error,
+      };
+      break;
+    case authConstants.RESET_PASSWORD_REQUEST:
+      break;
+    case authConstants.RESET_PASSWORD_SUCCESS:
+      state = {
+        ...state,
+        tokenSuccess: "Xác nhận thành công",
+      };
+      break;
+    case authConstants.RESET_PASSWORD_FAILURE:
+      state = {
+        ...state,
+        error: action.payload.error,
+      };
+      break;
+    case authConstants.RESET_ERROR:
+      state = {
+        ...state,
+        error: null,
+      };
+      break;
+    case authConstants.RESET_SUCCESS_TOKEN:
+      state = {
+        ...state,
+        tokenSuccess: null,
       };
       break;
     default:

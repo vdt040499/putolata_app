@@ -33,29 +33,36 @@ export const login = (user) => {
   console.log(user);
 
   return async (dispatch) => {
-    dispatch({ type: authConstants.LOGIN_REQUEST });
-    const res = await axios.post("/signin", {
-      ...user,
-    });
-
-    if (res.status === 200) {
-      const { token, user } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      dispatch({
-        type: authConstants.LOGIN_SUCCESS,
-        payload: {
-          token,
-          user,
-        },
+    try {
+      dispatch({ type: authConstants.LOGIN_REQUEST });
+      const res = await axios.post("/signin", {
+        ...user,
       });
-    } else {
-      if (res.status === 400) {
+
+      if (res.status === 200) {
+        const { token, user } = res.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
         dispatch({
-          type: authConstants.LOGIN_FAILURE,
-          payload: { error: res.data.error },
+          type: authConstants.LOGIN_SUCCESS,
+          payload: {
+            token,
+            user,
+          },
         });
+      } else {
+        if (res.status === 400) {
+          dispatch({
+            type: authConstants.LOGIN_FAILURE,
+            payload: { error: res.data.error },
+          });
+        }
       }
+    } catch (error) {
+      dispatch({
+        type: authConstants.FORGOT_PASSWORD_FAILURE,
+        payload: { error: "Email hoặc mật khẩu không đúng" },
+      });
     }
   };
 };
@@ -96,5 +103,64 @@ export const signout = () => {
     //         payload: { error: res.data.error }
     //     });
     // }
+  };
+};
+
+export const forgetPassword = (payload) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: authConstants.FORGOT_PASSWORD_REQUEST });
+      const res = await axios.post("/forgotpassword", payload);
+
+      if (res.status === 201) {
+        dispatch({ type: authConstants.FORGOT_PASSWORD_SUCCESS });
+      } else {
+        console.log(res.data.message);
+        dispatch({
+          type: authConstants.FORGOT_PASSWORD_FAILURE,
+          payload: { error: res.data.message },
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: authConstants.FORGOT_PASSWORD_FAILURE,
+        payload: { error: "Có vấn đề về email của bạn! Kiểm tra lại nhé" },
+      });
+    }
+  };
+};
+
+export const resetPassword = (payload) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: authConstants.RESET_PASSWORD_REQUEST });
+      const res = await axios.post("/resetpassword", payload);
+
+      if (res.status === 201) {
+        dispatch({ type: authConstants.RESET_PASSWORD_SUCCESS });
+      } else {
+        dispatch({
+          type: authConstants.RESET_PASSWORD_FAILURE,
+          payload: { error: res.data.error },
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: authConstants.RESET_PASSWORD_FAILURE,
+        payload: { error: "Mã xác nhận không đúng" },
+      });
+    }
+  };
+};
+
+export const resetError = () => {
+  return async (dispatch) => {
+    dispatch({ type: authConstants.RESET_ERROR });
+  };
+};
+
+export const resetTokenSuccess = () => {
+  return async (dispatch) => {
+    dispatch({ type: authConstants.RESET_SUCCESS_TOKEN });
   };
 };
