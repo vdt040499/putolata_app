@@ -6,7 +6,6 @@ const initState = {
     firstName: "",
     lastName: "",
     email: "",
-    picture: "",
   },
   authenticate: false,
   authenticating: false,
@@ -78,10 +77,24 @@ const authReducer = (state = initState, action) => {
     case authConstants.RESET_PASSWORD_SUCCESS:
       state = {
         ...state,
-        tokenSuccess: "Xác nhận thành công",
+        tokenSuccess: "Xác nhận thành công"
       };
       break;
     case authConstants.RESET_PASSWORD_FAILURE:
+      state = {
+        ...state,
+        error: action.payload.error,
+      };
+      break;
+    case authConstants.UPDATE_ACCOUNT_REQUEST:
+      break;
+    case authConstants.UPDATE_ACCOUNT_SUCCESS:
+      state = {
+        ...state,
+        user: action.payload.user,
+      };
+      break;
+    case authConstants.UPDATE_ACCOUNT_FAILURE:
       state = {
         ...state,
         error: action.payload.error,

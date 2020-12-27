@@ -218,9 +218,9 @@ function Header(props) {
 
           {/* Account */}
           <li className="header__account">
-            <Link className="link" to="/account">
+            <button className="link">
               <img src={account} alt="" className="header__icon" />
-            </Link>
+            </button>
             {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
           </li>
         </ul>
@@ -324,7 +324,7 @@ function Header(props) {
 
                     {reset && (
                       <MaterialInput
-                        type="text"
+                        type="password"
                         label="New Password"
                         value={newPass}
                         onChange={(e) => setNewPass(e.target.value)}
@@ -333,8 +333,8 @@ function Header(props) {
 
                     {reset && (
                       <MaterialInput
-                        type="text"
-                        label="Email"
+                        type="password"
+                        label="Retype Password"
                         value={retypePass}
                         onChange={(e) => setRetypePass(e.target.value)}
                       />

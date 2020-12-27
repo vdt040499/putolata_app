@@ -4,7 +4,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getOrders } from "../../actions";
+import { getOrders, resetError, updateUser } from "../../actions";
+import { useSnackbar } from "notistack";
 import starbling from "../../assets/img/Image 45.png";
 import billgreen from "../../assets/img/Image 46.png";
 import billred from "../../assets/img/Image 47.png";
@@ -19,6 +20,7 @@ function Account() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
@@ -26,6 +28,25 @@ function Account() {
   useEffect(() => {
     dispatch(getOrders());
   }, []);
+
+  useEffect(() => {
+    if (auth.error !== null) {
+      enqueueSnackbar(auth.error, { variant: "error" });
+      dispatch(resetError());
+    }
+  }, [auth.error]);
+
+  const editAccount = () => {
+    const payload = { firstName, lastName, password };
+
+    dispatch(updateUser(payload));
+
+    setFirstName("");
+    setLastName("");
+    setPassword("");
+
+    setEditModal(false);
+  };
 
   return (
     <Layout>
@@ -167,7 +188,9 @@ function Account() {
             </Row>
 
             <Row className="justify-content-md-center">
-              <button className="editaccount__type1">XÁC NHẬN</button>
+              <button onClick={editAccount} className="editaccount__type1">
+                XÁC NHẬN
+              </button>
             </Row>
           </Container>
         </div>

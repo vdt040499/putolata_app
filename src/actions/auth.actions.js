@@ -1,4 +1,5 @@
 import axios from "../helpers/axios";
+import authReducer from "../reducers/auth.reducers";
 import { authConstants, cartConstants } from "./constants";
 
 export const signup = (user) => {
@@ -162,5 +163,33 @@ export const resetError = () => {
 export const resetTokenSuccess = () => {
   return async (dispatch) => {
     dispatch({ type: authConstants.RESET_SUCCESS_TOKEN });
+  };
+};
+
+export const updateUser = (payload) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.patch(`/user`, payload);
+      dispatch({ type: authConstants.UPDATE_ACCOUNT_REQUEST });
+      if (res.status === 200) {
+        const { user } = res.data;
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch({
+          type: authConstants.UPDATE_ACCOUNT_SUCCESS,
+          payload: { user },
+        });
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: authConstants.UPDATE_ACCOUNT_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: authConstants.UPDATE_ACCOUNT_FAILURE,
+        payload: { error: "Thông tin thay đổi có vấn đề" },
+      });
+    }
   };
 };
