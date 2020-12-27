@@ -94,7 +94,7 @@ export const signout = () => {
     dispatch({ type: authConstants.LOGOUT_REQUEST });
     localStorage.clear();
     dispatch({ type: authConstants.LOGOUT_SUCCESS });
-    dispatch({ type: cartConstants.RESET_CART });
+    dispatch({ type: cartConstants.DELETE_CART });
     //const res = await axios.post(`/admin/signout`);
     // if(res.status === 200){
 

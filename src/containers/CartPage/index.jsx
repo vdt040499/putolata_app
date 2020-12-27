@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Container, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getCartItems, removeCartItem } from "../../actions";
-import Layout from "../../components/Layout";
-import Card from "../../components/UI/Card";
-import CartItem from "./components/CartItem";
-import { MaterialButton } from "../../components/MaterialUI";
-import { Table, Container } from "react-bootstrap";
-import "./style.css";
-import PriceDetails from "../../components/PriceDetails";
-import carticon from "../../assets/img/Image 41.png";
+import { useSnackbar } from "notistack";
 import { Link } from "react-router-dom";
+
+import { addToCart, getCartItems, removeCartItem } from "../../actions";
+import carticon from "../../assets/img/Image 41.png";
+import Layout from "../../components/Layout";
+import CartItem from "./components/CartItem";
+import "./style.css";
 
 /*
 Before Login
@@ -22,6 +21,7 @@ if logged in then add products to users cart database from localStorage
 const CartPage = (props) => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
+  const { enqueueSnackbar } = useSnackbar();
   const [cartItems, setCartItems] = useState(cart.cartItems);
   const dispatch = useDispatch();
 
@@ -48,6 +48,16 @@ const CartPage = (props) => {
 
   const onRemoveCartItem = (_id) => {
     dispatch(removeCartItem({ productId: _id }));
+  };
+
+  const checkout = () => {
+    if (!auth.authenticate) {
+      enqueueSnackbar("Vui lòng đăng nhập trước khi đặt hàng", {
+        variant: "error",
+      });
+    } else {
+      props.history.push(`/checkout`);
+    }
   };
 
   if (props.onlyCartItems) {
@@ -111,7 +121,7 @@ const CartPage = (props) => {
                 VNĐ
               </p>
               <div className="cartitem__buttons">
-                <button onClick={() => props.history.push(`/checkout`)}>
+                <button onClick={checkout}>
                   <button className="pay">Thanh toán</button>
                 </button>
                 <Link to="/">

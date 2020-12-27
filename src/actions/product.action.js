@@ -27,6 +27,20 @@ export const getProductsBySlug = (slug) => {
   };
 };
 
+export const getProductsById = (slug) => {
+  return async (dispatch) => {
+    const res = await axiosInstance.get(`/category/getproducts/${slug}`);
+    if (res.status === 200) {
+      dispatch({
+        type: productConstants.GET_PRODUCTS_BY_ID,
+        payload: res.data,
+      });
+    } else {
+      dispatch({});
+    }
+  };
+};
+
 export const getProductPage = (payload) => {
   return async (dispatch) => {
     try {

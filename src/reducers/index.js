@@ -6,11 +6,11 @@ import userReducer from "./user.reducer";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
+  cart: cartReducer,
   category: categoryReducer,
   product: productReducer,
   auth: authReducer,
-  cart: cartReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 export default rootReducer;

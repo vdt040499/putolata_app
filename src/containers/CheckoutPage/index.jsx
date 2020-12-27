@@ -48,8 +48,9 @@ const Address = ({
           <div style={{ width: "100%" }}>
             <div className="addressDetail">
               <div>
-                <span className="addressName">{adr.name}</span>
-                <span className="addressType">{adr.addressType}</span>
+                <span className="addressName">{adr.name} </span>
+              </div>
+              <div>
                 <span className="addressMobileNumber">{adr.mobileNumber}</span>
               </div>
               {adr.selected && (
@@ -64,7 +65,7 @@ const Address = ({
               )}
             </div>
             <div className="fullAddress">
-              {adr.address} <br /> {`${adr.state} - ${adr.pinCode}`}
+              {`${adr.locality}, ${adr.address}, ${adr.cityDistrictTown}`}
             </div>
             {adr.selected && (
               <MaterialButton
@@ -163,6 +164,8 @@ const CheckoutPage = (props) => {
     console.log(payload);
     dispatch(addOrder(payload));
     setConfirmOrder(true);
+
+    
   };
 
   useEffect(() => {
@@ -180,11 +183,11 @@ const CheckoutPage = (props) => {
     //user.address.length === 0 && setNewAddress(true);
   }, [user.address]);
 
-  //   useEffect(() => {
-  //     if (confirmOrder && user.placedOrderId) {
-  //       props.history.push(`/order_details/${user.placedOrderId}`);
-  //     }
-  //   }, [user.placedOrderId]);
+    useEffect(() => {
+      if (confirmOrder && user.placedOrderId) {
+        props.history.push(`/order_details/${user.placedOrderId}`);
+      }
+    }, [user.placedOrderId]);
 
   return (
     <Layout>
@@ -219,7 +222,7 @@ const CheckoutPage = (props) => {
             body={
               <>
                 {confirmAddress ? (
-                  <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
+                  <div className="stepCompleted">{`${selectedAddress.name} - ${selectedAddress.locality}, ${selectedAddress.address}, ${selectedAddress.cityDistrictTown}`}</div>
                 ) : (
                   address.map((adr) => (
                     <Address

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProductsBySlug } from "../../actions";
 import Layout from "../../components/Layout";
-import Card from "../../components/UI/Card";
-import { generatePublicUrl } from "../../urlConfig";
+import Product from "../../components/Product";
 import "./style.css";
 
 const ProductsPage = (props) => {
@@ -18,31 +18,25 @@ const ProductsPage = (props) => {
 
   return (
     <Layout sidebar>
-      <div style={{ padding: "10px" }}>
-        <Card
-          style={{
-            boxSizing: "border-box",
-            padding: "10px",
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
+      <Container>
+        <Row>
           {product.products.map((product) => (
-            <div className="caContainer">
+            <Col lg={3} md={6}>
               <Link
-                className="caImgContainer"
                 to={`/${product.slug}/${product._id}/p`}
+                style={{ textDecoration: "none" }}
               >
-                <img src={generatePublicUrl(product.productPictures[0].img)} alt=""/>
+                <Product
+                  title={product.name}
+                  price={product.price}
+                  image={product.productPictures[0].img}
+                  rating={5}
+                />
               </Link>
-              <div>
-                <div className="caProductName">{product.name}</div>
-                <div className="caProductPrice">{product.price}</div>
-              </div>
-            </div>
+            </Col>
           ))}
-        </Card>
-      </div>
+        </Row>
+      </Container>
     </Layout>
   );
 };

@@ -3,6 +3,7 @@ import { productConstants } from "../actions/constants";
 const initialState = {
   allProducts: [],
   products: [],
+  productsById: [],
   pageRequest: false,
   page: {},
   error: null,
@@ -23,6 +24,12 @@ const productReducer = (state = initialState, action) => {
       state = {
         ...state,
         products: action.payload.products,
+      };
+      break;
+    case productConstants.GET_PRODUCTS_BY_ID:
+      state = {
+        ...state,
+        productsById: action.payload.products,
       };
       break;
     case productConstants.GET_PRODUCT_PAGE_REQUEST:

@@ -7,20 +7,13 @@ function Product({ title, image, price, rating }) {
     <div className="product">
       <div className="product__info">
         <div className="product__addbutton">
-          <button className="product__add">
+          {/* <button className="product__add">
             <img className="addbutton" src={addtocart} alt="" />
-          </button>
+          </button> */}
         </div>
         {/* <img src={imgproduct} alt="" className="product__img"/> */}
         <div className="product__img">
           <img src={image} alt="" className="img" />
-        </div>
-        <div className="product__rating">
-          {Array(rating)
-            .fill()
-            .map((_, i) => (
-              <i class="fa fa-star"></i>
-            ))}
         </div>
         <p className="product__title">{title}</p>
         <p className="product__price">{price} VNĐ</p>

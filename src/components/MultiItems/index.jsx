@@ -3,7 +3,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../Product/style.css";
 import Product from "../Product";
-function MultiItems() {
+import { generatePublicUrl } from "../../urlConfig";
+import { Link } from "react-router-dom";
+function MultiItems(props) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -45,54 +47,19 @@ function MultiItems() {
         slidesToSlide={1}
         swipeable
       >
-        <Product
-          title="Misha Collins Famous Coloring"
-          price={999.99}
-          image={
-            "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-          }
-          rating={5}
-        />
-        <Product
-          title="Misha Collins Famous Coloring"
-          price={999.99}
-          image={
-            "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-          }
-          rating={5}
-        />
-        <Product
-          title="Misha Collins Famous Coloring"
-          price={999.99}
-          image={
-            "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-          }
-          rating={5}
-        />
-        <Product
-          title="Misha Collins Famous Coloring"
-          price={999.99}
-          image={
-            "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-          }
-          rating={5}
-        />
-        <Product
-          title="Misha Collins Famous Coloring"
-          price={999.99}
-          image={
-            "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-          }
-          rating={5}
-        />
-        <Product
-          title="Misha Collins Famous Coloring"
-          price={999.99}
-          image={
-            "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-          }
-          rating={5}
-        />
+        {props.products.map((product) => (
+          <Link
+            to={`/${product.slug}/${product._id}/p`}
+            style={{ textDecoration: "none" }}
+          >
+            <Product
+              title={product.name}
+              price={product.price}
+              image={product.productPictures[0].img}
+              rating={5}
+            />
+          </Link>
+        ))}
       </Carousel>
     </div>
   );

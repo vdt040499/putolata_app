@@ -122,17 +122,21 @@ const HomePage = () => {
             <Row>
               {newProduct.map((product) => (
                 <Col lg={3} md={6}>
-                  <Product
-                    title={product.name}
-                    price={product.price}
-                    image={generatePublicUrl(product.productPictures[0].img)}
-                    rating={5}
-                  />
+                  <Link
+                    to={`/${product.slug}/${product._id}/p`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Product
+                      title={product.name}
+                      price={product.price}
+                      image={product.productPictures[0].img}
+                      rating={5}
+                    />
+                  </Link>
                 </Col>
               ))}
             </Row>
           </Container>
-          <button className="home__type1">XEM THÊM</button>
         </div>
 
         <div className="home__star">
@@ -141,66 +145,43 @@ const HomePage = () => {
           <div className="home__starcontent">
             <Container>
               <Row>
-                {bestSeller.map((product, index) => {
+                {bestSeller.slice(0, 3).map((product, index) => {
                   if (index === 1) {
                     return (
                       <Col lg={6} md={4}>
-                        <SpecialProduct
-                          title={product.name}
-                          price={product.price}
-                          image={generatePublicUrl(
-                            product.productPictures[0].img
-                          )}
-                          rating={5}
-                        />
+                        <Link
+                          to={`/${product.slug}/${product._id}/p`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <SpecialProduct
+                            title={product.name}
+                            price={product.price}
+                            image={product.productPictures[0].img}
+                            rating={5}
+                          />
+                        </Link>
                       </Col>
                     );
                   } else {
                     return (
-                      <Product
-                        title={product.name}
-                        price={product.price}
-                        image={generatePublicUrl(
-                          product.productPictures[0].img
-                        )}
-                        rating={5}
-                      />
+                      <Col lg={3} md={4}>
+                        <Link
+                          to={`/${product.slug}/${product._id}/p`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <Product
+                            title={product.name}
+                            price={product.price}
+                            image={product.productPictures[0].img}
+                            rating={5}
+                          />
+                        </Link>
+                      </Col>
                     );
                   }
                 })}
-                {/* <Col lg={3} md={4}>
-                  <Product
-                    title={bestSeller[0].name}
-                    price={999.99}
-                    image={
-                      "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                    }
-                    rating={5}
-                  />
-                </Col>
-                <Col lg={6} md={4}>
-                  <SpecialProduct
-                    title={bestSeller[0].name}
-                    price={bestSeller[0].price}
-                    image={generatePublicUrl(
-                      bestSeller[0].productPictures[0].img
-                    )}
-                    rating={5}
-                  />
-                </Col>
-                <Col lg={3} md={4}>
-                  <Product
-                    title="Misha Collins Famous Coloring"
-                    price={999.99}
-                    image={
-                      "https://cdn.concung.com/2019/06/39316-50253/thach-orihiro-vi-nho-120g.jpg"
-                    }
-                    rating={5}
-                  />
-                </Col> */}
               </Row>
             </Container>
-            <button className="home__type2">XEM THÊM</button>
           </div>
         </div>
 
@@ -209,7 +190,6 @@ const HomePage = () => {
           <p className="home__descript">
             Tại vì chúng mình là đỉnh nhấttttttt!
           </p>
-          <button className="home__type1">XEM SẢN PHẨM</button>
           <div className="home__catecontainer">
             <Container>
               <Row>

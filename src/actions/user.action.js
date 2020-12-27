@@ -61,14 +61,14 @@ export const addOrder = (payload) => {
       dispatch({ type: userConstants.ADD_USER_ORDER_REQUEST });
       if (res.status === 201) {
         console.log(res);
-        // const { order } = res.data;
+        const { order } = res.data;
         dispatch({
-          type: cartConstants.RESET_CART,
+          type: cartConstants.DELETE_CART,
         });
-        // dispatch({
-        //   type: userConstants.ADD_USER_ORDER_SUCCESS,
-        //   payload: { order },
-        // });
+        dispatch({
+          type: userConstants.ADD_USER_ORDER_SUCCESS,
+          payload: { order },
+        });
         // const {
         //   address: { address },
         // } = res.data;
