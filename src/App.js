@@ -12,6 +12,8 @@ import OrderPage from "./containers/OrderPage";
 import ProductDetailsPage from "./containers/ProductDetailsPage";
 import ProductListPage from "./containers/ProductListPage";
 import SalePage from "./containers/SalePage";
+import MessengerCustomerChat from 'react-messenger-customer-chat';
+import SideShare from "./components/SlideShare";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +35,11 @@ function App() {
 
   return (
     <div className="App">
+      <MessengerCustomerChat
+        pageId="103170758381803"
+        appId="223938699335936"
+      />
+      <SideShare/>
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
