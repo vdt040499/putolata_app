@@ -14,7 +14,7 @@ import cake from "../../assets/img/Image 33.png";
 import news from "../../assets/img/new.png";
 import hinh1 from "../../assets/img/NoPath.png";
 import payment from "../../assets/img/payment.png";
-import product from "../../assets/img/product.png";
+import productImage from "../../assets/img/product.png";
 import slogan from "../../assets/img/slogan.png";
 import superstar from "../../assets/img/superstar.png";
 import topper from "../../assets/img/topper.png";
@@ -253,7 +253,7 @@ const HomePage = () => {
                   <div className="home__rulecontainer">
                     <RuleItem
                       name="Chất lượng"
-                      img={product}
+                      img={productImage}
                       des="Chúng tôi tự tin bảo đảm chất lượng hàng hóa của mình."
                     />
                   </div>

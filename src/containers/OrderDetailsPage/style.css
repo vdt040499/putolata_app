@@ -90,3 +90,117 @@
 .orderInfo .date{
     font-size: 10px;
 }
+
+.checkout__container {
+    margin: 20px 0px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    box-shadow: 0px 0px 2px 2px rgb(238, 238, 238);
+    padding: 3vw;
+}
+
+.checkout__title, .checkout__billcode,.checkout__subtitle {
+    text-transform: uppercase;
+    color: #38CDD9;
+    font-weight: bold;
+    margin-bottom: 0px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.checkout__title {
+    font-size: 20px;
+    text-align: center;
+}
+
+.checkout__billcode {
+    text-align: center;
+}
+
+.checkout__details {
+    color: #5CA2A8;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.checkout__shippingfee, .checkout__totalbill {
+    color: #FF8787;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.checkout__totalbill {
+    font-size: 20px;
+}
+
+.chechout__addinfo {
+    font-weight: bold;
+    color: #5CA2A8;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.editinfo {
+    margin-top: 10px;
+    background-color: #51BCB1;
+    padding: 10px;
+    color: #ffff;
+}
+
+.editinfo:hover {
+    text-decoration: none;
+    color: white;
+    background-color: teal;
+}
+
+.editinfobutton {
+    margin: 20px 0px;
+}
+
+.checkout__add {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #5CA2A8 ;
+}
+
+.checkout__logocontainer {
+    text-align: center;
+}
+
+.checkout__logoscript {
+    font-weight: bold;
+    color:#FF8787;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.checkout__img {
+    width: 200px;
+}
+
+.checkout__buttoncheck {
+    margin: 30px 0px;
+}
+
+.checkout__check {
+    background-color:#FF8787;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+    box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+
+.checkout__check:hover {
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-color: pink;
+    color: white;
+    text-decoration: none;
+    background-position: 100% 0;
+}
