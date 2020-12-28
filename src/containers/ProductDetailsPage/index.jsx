@@ -87,7 +87,7 @@ const ProductDetailsPage = (props) => {
                 <p className="productdetails__srtdes">{description}</p>
 
                 <div className="productdetails__price">
-                  {sale !== 0 ? (
+                  {/* {!sale ? (
                     <>
                       <p className="productdetails__actprice">
                         {price - (sale * price) / 100} VNĐ
@@ -97,10 +97,10 @@ const ProductDetailsPage = (props) => {
                       </strike>
                     </>
                   ) : (
-                    <>
-                      <p className="productdetails__actprice">{price}</p>
-                    </>
-                  )}
+                    <> */}
+                  <p className="productdetails__actprice">{price} VND</p>
+                  {/* </> */}
+                  {/* )} */}
                 </div>
 
                 <div className="productdetails__status">

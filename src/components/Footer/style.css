@@ -55,6 +55,8 @@
 
 .footer__infoadven {
     color: #EF6E92;
+    text-align: left;
+    background-color: #FFEEEE;
 }
 
 .footer__infoadven:hover {

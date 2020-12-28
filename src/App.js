@@ -12,8 +12,10 @@ import OrderPage from "./containers/OrderPage";
 import ProductDetailsPage from "./containers/ProductDetailsPage";
 import ProductListPage from "./containers/ProductListPage";
 import SalePage from "./containers/SalePage";
-import MessengerCustomerChat from 'react-messenger-customer-chat';
+import MessengerCustomerChat from "react-messenger-customer-chat";
 import SideShare from "./components/SlideShare";
+import AboutUs from "./containers/AboutUs";
+import Error from "./containers/Error";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,17 +37,15 @@ function App() {
 
   return (
     <div className="App">
-      <MessengerCustomerChat
-        pageId="103170758381803"
-        appId="223938699335936"
-      />
-      <SideShare/>
+      <MessengerCustomerChat pageId="103170758381803" appId="223938699335936" />
+      <SideShare />
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/cart" component={CartPage} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/sales" component={SalePage} />
+          <Route path="/aboutus" component={AboutUs} />
           <Route path="/account" exact component={Account} />
           <Route path="/account/orders" component={OrderPage} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
@@ -54,6 +54,8 @@ function App() {
             component={ProductDetailsPage}
           />
           <Route path="/:slug" component={ProductListPage} />
+
+          <Route component={Error} />
         </Switch>
       </Router>
     </div>
