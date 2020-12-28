@@ -178,6 +178,7 @@ function Header(props) {
           </li>
 
           <li className="header__dropdown">
+          <Link to="/products" className='link' >Sản phẩm</Link>
             <MenuHeader />
           </li>
 

@@ -29,20 +29,20 @@ const ProductDetailsPage = (props) => {
     description,
     price,
     quantity,
-    category,
     detailDescription,
   } = product.productDetails;
 
   useEffect(() => {
     const { productId } = props.match.params;
 
-    dispatch(getProductsById(category));
     const payload = {
       params: {
         productId,
       },
     };
     dispatch(getProductDetailsById(payload));
+
+    dispatch(getProductsById(product.productDetails.category));
   }, []);
 
   if (Object.keys(product.productDetails).length === 0) {

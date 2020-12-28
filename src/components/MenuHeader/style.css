@@ -1,9 +1,5 @@
 .menuHeader {
-    width: 100%;
-    height: 40px;
     background: #fff;
-    border-bottom: 1px solid #cecece;
-    box-shadow: 0 2px 2px -2px #333;
 }
 
 .menuHeader ul {
@@ -27,22 +23,15 @@
 }
 
 .menuHeader > ul > li > span:hover {
-    color: #66fcf1;
+    color: #e952cb;
 }
 
 .menuHeader > ul > li > ul {
     position: absolute;
-    background: #fff;
     left: 0;
     right: 0;
-    display: none;
-    border: 1px solid #cecece;
-    z-index: 1;
 }
 
-.menuHeader > ul > li:hover > ul {
-    display: block;
-}
 
 .menuHeader > ul > li > ul > li {
     margin: 0 20px;
@@ -66,10 +55,14 @@
     color: #707070;
 }
 
-.dropdowncontent {
+.menuHeader {
+    /* position: absolute; */
+    width: 500px;
     display:none;
+    /* top: 0; */
+    /* left: 0; */
 }
 
-.header__dropdown:hover > .dropdowncontent {
+.header__dropdown:hover > .menuHeader {
     display: block;
 }
