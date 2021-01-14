@@ -164,8 +164,6 @@ const CheckoutPage = (props) => {
     console.log(payload);
     dispatch(addOrder(payload));
     setConfirmOrder(true);
-
-    
   };
 
   useEffect(() => {
@@ -183,11 +181,11 @@ const CheckoutPage = (props) => {
     //user.address.length === 0 && setNewAddress(true);
   }, [user.address]);
 
-    useEffect(() => {
-      if (confirmOrder && user.placedOrderId) {
-        props.history.push(`/order_details/${user.placedOrderId}`);
-      }
-    }, [user.placedOrderId]);
+  useEffect(() => {
+    if (confirmOrder && user.placedOrderId) {
+      props.history.push(`/order_details/${user.placedOrderId}`);
+    }
+  }, [user.placedOrderId]);
 
   return (
     <Layout>
@@ -308,7 +306,7 @@ const CheckoutPage = (props) => {
                     }}
                   >
                     <input type="radio" name="paymentOption" value="cod" />
-                    <div>Cash on delivery</div>
+                    <div>Ship cod</div>
                   </div>
                   <MaterialButton
                     title="CONFIRM ORDER"

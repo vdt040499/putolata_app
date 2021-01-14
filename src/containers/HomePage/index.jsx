@@ -31,14 +31,14 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
+  const handleProduct = product;
 
-  const newProduct = product.allProducts.sort((a, b) => {
-    return Date(a.createdAt) - Date(b.createdAt);
+  const newProduct = handleProduct.allProducts.sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
   });
-  const bestSeller = product.allProducts.sort((a, b) => {
+  const bestSeller = handleProduct.allProducts.sort((a, b) => {
     return b.sold - a.sold;
   });
 
@@ -120,7 +120,7 @@ const HomePage = () => {
           </p>
           <Container>
             <Row>
-              {newProduct.map((product) => (
+              {newProduct.slice(0, 8).map((product) => (
                 <Col lg={3} md={6}>
                   <Link
                     to={`/${product.slug}/${product._id}/p`}
@@ -130,7 +130,8 @@ const HomePage = () => {
                       title={product.name}
                       price={product.price}
                       image={product.productPictures[0].img}
-                      rating={5}
+                      discount={product.discount}
+                      sold={product.sold}
                     />
                   </Link>
                 </Col>
@@ -145,40 +146,23 @@ const HomePage = () => {
           <div className="home__starcontent">
             <Container>
               <Row>
-                {bestSeller.slice(0, 3).map((product, index) => {
-                  if (index === 1) {
-                    return (
-                      <Col lg={6} md={4}>
-                        <Link
-                          to={`/${product.slug}/${product._id}/p`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <SpecialProduct
-                            title={product.name}
-                            price={product.price}
-                            image={product.productPictures[0].img}
-                            rating={5}
-                          />
-                        </Link>
-                      </Col>
-                    );
-                  } else {
-                    return (
-                      <Col lg={3} md={4}>
-                        <Link
-                          to={`/${product.slug}/${product._id}/p`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <Product
-                            title={product.name}
-                            price={product.price}
-                            image={product.productPictures[0].img}
-                            rating={5}
-                          />
-                        </Link>
-                      </Col>
-                    );
-                  }
+                {bestSeller.slice(0, 4).map((product, index) => {
+                  return (
+                    <Col lg={3} md={4}>
+                      <Link
+                        to={`/${product.slug}/${product._id}/p`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Product
+                          title={product.name}
+                          price={product.price}
+                          image={product.productPictures[0].img}
+                          discount={product.discount}
+                          sold={product.sold}
+                        />
+                      </Link>
+                    </Col>
+                  );
                 })}
               </Row>
             </Container>

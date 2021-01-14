@@ -47,9 +47,20 @@ i {
     color: #FF9895;
 }
 
-/* .product__info:hover {
-    box-shadow: 0px 0px 0px 1px #ffaac3
-} */
+.product__fakeprice {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e9c0bf;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.product__sold {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF9895;
+    margin-left: 20px;
+}
 
 .product__info:hover > .product__img {
     transform: scale(0.8,0.8);

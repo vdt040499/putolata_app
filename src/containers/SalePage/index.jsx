@@ -12,7 +12,6 @@ import Layout from "../../components/Layout";
 import Product from "../../components/Product";
 import "./style.css";
 
-
 function Sales() {
   const product = useSelector((state) => state.product);
 
@@ -44,21 +43,25 @@ function Sales() {
           </Row>
 
           <Row>
-            {bestSeller.map((product) => (
-              <Col lg={3} md={6}>
-                <Link
-                  to={`/${product.slug}/${product._id}/p`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Product
-                    title={product.name}
-                    price={product.price}
-                    image={product.productPictures[0].img}
-                    rating={5}
-                  />
-                </Link>
-              </Col>
-            ))}
+            {bestSeller.map((product) => {
+              if (product.discount) {
+                return (
+                  <Col lg={3} md={6}>
+                    <Link
+                      to={`/${product.slug}/${product._id}/p`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Product
+                        title={product.name}
+                        price={product.price}
+                        image={product.productPictures[0].img}
+                        discount={product.discount}
+                      />
+                    </Link>
+                  </Col>
+                );
+              }
+            })}
           </Row>
         </Container>
       </div>

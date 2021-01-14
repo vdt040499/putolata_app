@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getProductsBySlug } from "../../actions";
 import Layout from "../../components/Layout";
 import Product from "../../components/Product";
+import Slider from "../../components/Slider";
 import "./style.css";
 
 const ProductsPage = (props) => {
@@ -18,6 +19,7 @@ const ProductsPage = (props) => {
 
   return (
     <Layout sidebar>
+      <Slider />
       <Container>
         <Row>
           {product.products.map((product) => (

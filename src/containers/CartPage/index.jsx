@@ -66,6 +66,7 @@ const CartPage = (props) => {
         {Object.keys(cartItems).map((key, index) => (
           <CartItem
             key={index}
+            cartIndex={index}
             cartItem={cartItems[key]}
             onQuantityInc={onQuantityIncrement}
             onQuantityDec={onQuantityDecrement}

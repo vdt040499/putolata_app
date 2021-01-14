@@ -2,7 +2,7 @@ import React from "react";
 import addtocart from "../../assets/img/Image 16.png";
 import "./style.css";
 
-function Product({ title, image, price, rating }) {
+function Product({ title, image, price, discount, sold }) {
   return (
     <div className="product">
       <div className="product__info">
@@ -16,7 +16,17 @@ function Product({ title, image, price, rating }) {
           <img src={image} alt="" className="img" />
         </div>
         <p className="product__title">{title}</p>
-        <p className="product__price">{price} VNĐ</p>
+        {discount ? (
+          <>
+            <span className="product__fakeprice">{price} VND</span>
+            <span className="product__price">
+              {price - (discount * price) / 100} VND
+            </span>
+          </>
+        ) : (
+          <span className="product__price">{price} VND</span>
+        )}
+        {sold && <span className="product__sold">{sold} đã bán</span>}
       </div>
     </div>
   );

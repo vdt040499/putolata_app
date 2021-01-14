@@ -121,9 +121,6 @@ function Header(props) {
           <Link to="/account" className="link">
             <button className="btn-hover color-4">{auth.user.fullName}</button>
           </Link>
-          <Link className="link" to="/account/orders">
-            <button className="btn-hover color-4">Đơn hàng</button>
-          </Link>
           <button className="link">
             <button className="btn-hover color-4" onClick={logout}>
               Đăng xuất

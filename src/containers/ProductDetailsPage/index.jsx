@@ -25,7 +25,6 @@ const ProductDetailsPage = (props) => {
   const {
     name,
     discount,
-    sale,
     description,
     price,
     quantity,
@@ -87,20 +86,20 @@ const ProductDetailsPage = (props) => {
                 <p className="productdetails__srtdes">{description}</p>
 
                 <div className="productdetails__price">
-                  {/* {!sale ? (
+                  {discount ? (
                     <>
                       <p className="productdetails__actprice">
-                        {price - (sale * price) / 100} VNĐ
+                        {price - (discount * price / 100)} VNĐ
                       </p>
                       <strike>
                         <p className="productdetails__fakeprice">{price} VNĐ</p>
                       </strike>
                     </>
                   ) : (
-                    <> */}
+                    <>
                   <p className="productdetails__actprice">{price} VND</p>
-                  {/* </> */}
-                  {/* )} */}
+                  </>
+                  )}
                 </div>
 
                 <div className="productdetails__status">

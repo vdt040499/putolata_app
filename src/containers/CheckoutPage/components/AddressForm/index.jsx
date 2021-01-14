@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../../../actions";
 import {
   MaterialButton,
-  MaterialInput
+  MaterialInput,
 } from "../../../../components/MaterialUI";
 
 const AddressForm = (props) => {
@@ -77,14 +77,14 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="Name"
+              label="Họ tên người nhận"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
-              label="10-digit mobile number"
+              label="Số điện thoại"
               value={mobileNumber}
               onChange={(e) => setMobileNumber(e.target.value)}
             />
@@ -93,14 +93,14 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="City/District/Town"
+              label="Tỉnh/TP"
               value={cityDistrictTown}
               onChange={(e) => setCityDistrictTown(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
-              label="Locality"
+              label="Địa chỉ cụ thể"
               value={locality}
               onChange={(e) => setLocality(e.target.value)}
             />
@@ -109,7 +109,7 @@ const AddressForm = (props) => {
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
-              label="Address"
+              label="Đường/KP/Phường/Quận"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -117,7 +117,7 @@ const AddressForm = (props) => {
         </div>
         <div className="flexRow">
           <MaterialButton
-            title="SAVE AND DELIVER HERE"
+            title="LƯU"
             onClick={onAddressSubmit}
             style={{
               width: "250px",
@@ -138,7 +138,7 @@ const AddressForm = (props) => {
       <div className={`checkoutHeader`}>
         <div>
           <span className="stepNumber">+</span>
-          <span className="stepTitle">{"ADD NEW ADDRESS"}</span>
+          <span className="stepTitle">{"THÊM ĐỊA CHỈ"}</span>
         </div>
       </div>
       <div
